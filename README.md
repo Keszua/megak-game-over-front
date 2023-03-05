@@ -1,6 +1,6 @@
 # Projekt na zaliczenie
 <p align="center">
-  <a href="https://www.megak.pl/" target="_blank" rel="noreferrer"> <img src="https://github.com/Keszua/megak-game-over-front/blob/master/public/images/megak.png" alt="MegaK" height="80"/>
+  <a href="https://www.megak.pl/" target="_blank" rel="noreferrer"> <img src="https://github.com/Keszua/megak-game-over-front/raw/main/public/images/megak.png" alt="MegaK" height="80"/>
   </a>
 </p>
 # Front End
