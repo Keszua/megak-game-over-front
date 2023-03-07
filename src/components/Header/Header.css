@@ -1,0 +1,54 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    position: sticky;
+    top: 0;
+
+
+    height: 100px;
+    width: auto;
+    z-index: 101;
+
+    background: rgba(16, 16, 16, 0.7);
+}
+
+.Header .logo {
+    width: 200px;
+    background: #040;
+}
+
+.Header .search {
+    width: 200px;
+    background: #046;
+    flex-grow: 1;
+}
+
+.Header .controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    background: #846;
+    min-width: 250px;
+}
+
+.Header .controls .contact {
+    background: #896;
+    min-width: 0px;
+
+}
+
+.Header .controls .basket {
+    background: #806;
+    min-width: 0px;
+
+}
+
+.Header .controls .login {
+    background: #80F;
+    min-width: 0px;
+
+}
