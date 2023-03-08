@@ -1,0 +1,24 @@
+.Menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Menu_element {
+    /* flex-grow: 1; */
+    /* border: 2px solid #ccc; */
+    border-radius: 14px;
+    padding: 0.3em 16px;
+
+    /* box-shadow: inset 0px -9px 3px 1px rgba(255, 255, 0, 0.5); */
+    box-shadow: inset 0px -5px 3px 2px rgba(105, 105, 0, 0.5);
+}
+
+.Menu_element:hover {
+    /* flex-grow: 1; */
+    /* border: 2px solid #ccc; */
+    
+    box-shadow: inset 0px 9px 3px 1px rgb(255, 255, 0);
+}

@@ -1,3 +1,4 @@
+import { IconBasket } from '../../SVG/IconBasket'
 import { LogoMain } from '../../SVG/LogoMain'
 import './Header.css'
 
@@ -18,7 +19,7 @@ export const Header = () => {
                 C2
             </div>
             <div className="login">
-                C3
+                <IconBasket />
             </div>
         </div>
     </div>

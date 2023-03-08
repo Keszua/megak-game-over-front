@@ -21,8 +21,11 @@
 
 .Header .search {
     width: 200px;
-    background: #046;
     flex-grow: 1;
+    border: 2px solid #ccc;
+    border-radius: 16px;
+    padding: 0.1em 16px;
+
 }
 
 .Header .controls {
@@ -31,7 +34,7 @@
     align-items: center;
     justify-content: space-around;
 
-    background: #846;
+    /* background: #846; */
     min-width: 250px;
 }
 
@@ -48,7 +51,7 @@
 }
 
 .Header .controls .login {
-    background: #80F;
+    /* background: #80F; */
     min-width: 0px;
 
 }
