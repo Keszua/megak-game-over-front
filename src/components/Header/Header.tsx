@@ -1,10 +1,11 @@
+import { LogoMain } from '../../SVG/LogoMain'
 import './Header.css'
 
 export const Header = () => {
 
     return <div className='Header'>
         <div className='logo'>
-            A
+            <LogoMain />
         </div>
         <div className='search'>
             B
