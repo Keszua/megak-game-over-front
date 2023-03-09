@@ -1,5 +1,7 @@
 import { IconBasket } from '../../SVG/IconBasket'
 import { LogoMain } from '../../SVG/LogoMain'
+import { IconLogin } from '../../SVG/IconLogin'
+import { IconContact } from '../../SVG/IconContact'
 import './Header.css'
 
 export const Header = () => {
@@ -13,13 +15,13 @@ export const Header = () => {
         </div>
         <div className='controls'>
             <div className='contact'>
-                C1
+                <IconContact />
             </div>
             <div className="basket">
-                C2
+                <IconBasket />
             </div>
             <div className="login">
-                <IconBasket />
+                <IconLogin />
             </div>
         </div>
     </div>

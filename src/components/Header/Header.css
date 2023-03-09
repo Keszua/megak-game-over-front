@@ -34,20 +34,17 @@
     align-items: center;
     justify-content: space-around;
 
-    /* background: #846; */
     min-width: 250px;
 }
 
 .Header .controls .contact {
-    background: #896;
+    /* background: #896; */
     min-width: 0px;
-
 }
 
 .Header .controls .basket {
-    background: #806;
+    /* background: #806; */
     min-width: 0px;
-
 }
 
 .Header .controls .login {
