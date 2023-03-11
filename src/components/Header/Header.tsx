@@ -18,10 +18,10 @@ export const Header = () => {
                 <IconContact />
             </div>
             <div className="basket">
-                <IconBasket />
+                <IconBasket isItems={false} />
             </div>
             <div className="login">
-                <IconLogin />
+                <IconLogin isLoged={false}/>
             </div>
         </div>
     </div>
