@@ -21,7 +21,4 @@ export const IconCoffin = () => {
             <rect x="197.486" y="404.375" width="15.673" height="26.122"/>
         </g>
     </svg>
-
 }
-
-// rgb(88,23,100);

@@ -1,7 +1,7 @@
 import { settings } from "../components/globalSettings"
 
 export const IconContact = () => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="60"  viewBox="0 -8 65 80">
+    return <svg xmlns="http://www.w3.org/2000/svg" width="60"  viewBox="0 0 65 65">
         <g stroke={settings.iconColor} fill='none' strokeWidth="2">
 			<circle cx="46" cy="43" r="5"/>
 			<path d="M46,48h0a7,7,0,0,1,7,7v7a0,0,0,0,1,0,0H39a0,0,0,0,1,0,0V55A7,7,0,0,1,46,48Z"/>

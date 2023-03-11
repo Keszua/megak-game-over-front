@@ -1,11 +1,11 @@
-import { IconCoffin } from '../../SVG/IconCoffin'
 import './Menu.css'
+import { IconCandle } from '../../SVG/IconCandle'
 
 export const Menu = () => {
 
         return <div className='Menu'>
             <div className='Menu_element'>
-                <IconCoffin />
+                Strona domowa
             </div>
             <div className='Menu_element'>
                 Produkty

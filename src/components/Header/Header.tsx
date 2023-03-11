@@ -1,8 +1,9 @@
+import './Header.css'
 import { IconBasket } from '../../SVG/IconBasket'
 import { LogoMain } from '../../SVG/LogoMain'
 import { IconLogin } from '../../SVG/IconLogin'
 import { IconContact } from '../../SVG/IconContact'
-import './Header.css'
+import { IconCandle } from '../../SVG/IconCandle'
 
 export const Header = () => {
 
@@ -14,14 +15,23 @@ export const Header = () => {
             B
         </div>
         <div className='controls'>
-            <div className='contact'>
+            <div className='control contact'>
                 <IconContact />
+                <div className='description'>
+                    Kontakt
+                </div>
             </div>
-            <div className="basket">
+            <div className="control basket">
                 <IconBasket isItems={false} />
+                <div className='description'>
+                    Koszyk
+                </div>
             </div>
-            <div className="login">
+            <div className="control login">
                 <IconLogin isLoged={false}/>
+                <div className='description'>
+                    Zaloguj
+                </div>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@ interface Props {
 export const IconBasket = (props: Props) => {
     const { isItems } = props;
 
-    return <svg xmlns="http://www.w3.org/2000/svg" width="60"  viewBox="0 0 180 180">
+    return <svg xmlns="http://www.w3.org/2000/svg" height="60"  viewBox="0 5 190 150">
         <g stroke={settings.iconColor}  strokeWidth="4" >
             { isItems && <g id="trumna" >
                     <polygon fill="none"  points="152.758,117.196 143.697,128.829 56.767,78.275 39.173,48.898 48.416,37.655 46.685,34.031 67.456,6.754 103.955,17.509 178.156,92.004 161.827,112.381 156.337,119.221 	"/>
