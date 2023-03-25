@@ -1,6 +1,6 @@
-export const Basket = () => {
+export const BasketView = () => {
     
-    <>
+    return <>
         Koszyk
     </>
-}
+};

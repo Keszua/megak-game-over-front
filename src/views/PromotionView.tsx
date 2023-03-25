@@ -1,6 +1,6 @@
 export const PromotionView = () => (
     
     <>
-        usługi
+        Promocje
     </>
 );

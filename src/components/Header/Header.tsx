@@ -4,6 +4,7 @@ import { LogoMain } from '../../SVG/LogoMain'
 import { IconLogin } from '../../SVG/IconLogin'
 import { IconContact } from '../../SVG/IconContact'
 import { IconCandle } from '../../SVG/IconCandle'
+import { NavLink } from 'react-router-dom'
 
 export const Header = () => {
 
@@ -15,24 +16,24 @@ export const Header = () => {
             B
         </div>
         <div className='controls'>
-            <div className='control contact'>
+            <NavLink to='/contact' className='control contact'>
                 <IconContact />
                 <div className='description'>
                     Kontakt
                 </div>
-            </div>
-            <div className="control basket">
+            </NavLink>
+            <NavLink to='/basket' className="control basket">
                 <IconBasket isItems={false} />
                 <div className='description'>
                     Koszyk
                 </div>
-            </div>
-            <div className="control login">
+            </NavLink>
+            <NavLink to='/login' className="control login">
                 <IconLogin isLoged={false}/>
                 <div className='description'>
                     Zaloguj
                 </div>
-            </div>
+            </NavLink>
         </div>
     </div>
 }
