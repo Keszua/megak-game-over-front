@@ -1,3 +1,7 @@
+:root {
+  --iconColor: #581764;
+}
+
 .App {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,64 @@
+.login-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 70vh;
+}
+  
+input[type="text"],
+input[type="password"] {
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+  
+  
+.login-container {
+    border: 3px solid var(--iconColor);
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    border-radius: 80px 80px 6px 6px;
+}
+  
+.list-container {
+    display: flex;
+}
+  
+.title {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+  
+.input-containerX {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 0.6em;
+}
+
+.login-button {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 0.7em;
+  background: #111;
+  border: 3px solid var(--iconColor);
+  border-radius: 16px;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background: var(--iconColor);
+}
