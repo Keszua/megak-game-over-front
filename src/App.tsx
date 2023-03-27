@@ -10,6 +10,7 @@ import { BasketView } from './views/BasketView';
 import { ContactView } from './views/ContactView';
 import { NotFoundView } from './views/NotFoundView';
 import { LoginView } from './views/LoginView';
+import { NewAccountView } from './views/NewAccountView';
 import { HomeView } from './views/HomeView';
 import { PromotionView } from './views/PromotionView';
 import { ServicesView } from './views/ServicesView';
@@ -28,6 +29,7 @@ function App() {
             <Route path="/basket" element={<BasketView />} />
             <Route path="/contact" element={<ContactView />} />
             <Route path="/login" element={<LoginView />} />
+            <Route path="/newaccount" element={<NewAccountView />} />
             <Route path="/products" element={<ProductsView />} />
             <Route path="/promotion" element={<PromotionView />} />
             <Route path="/services" element={<ServicesView />} />

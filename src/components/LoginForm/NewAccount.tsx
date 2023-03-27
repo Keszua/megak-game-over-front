@@ -1,20 +1,17 @@
 import { FormEvent, useEffect, useState } from "react";
 import "./LoginForm.css";
-import { AuthLoginEntity, AuthLoginResponse } from 'types';
+import { UserRegisterEntity, UserRegisterResponse } from 'types';
 import { fetchPOST } from "../../utils/fethMetod";
 import { NavLink } from "react-router-dom";
 
-export const LoginForm = () => {
-    const [form, setForm] = useState<AuthLoginEntity>({
+export const NewAccount = () => {
+    const [form, setForm] = useState<UserRegisterEntity>({
+        login: '',
         email: '',
         password: '',
     });
     const [errorMessages, setErrorMessages] = useState<string>('');
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-    const [loginUser, setLoginUser] = useState<string>('');
-    const [textAccount, setTextAccount] = useState<string>('nagrobka');
-    const [textAccountButton, setTextAccountButton] = useState<string>('Załuż nowe konto');
-    const [textLoging, setTextLoging] = useState<string>('zakopany');
 
     const updateForm = (key: string, value: any) => {
         setForm( form => ({
@@ -28,21 +25,17 @@ export const LoginForm = () => {
 
         try {
             //TODO dodać loader
-            const data: AuthLoginResponse = await fetchPOST(`/auth/login`, { ...form });
+            const data: UserRegisterResponse = await fetchPOST(`/user/register`, { ...form });
             
             if (data.isSucces) {
                 setIsSubmitted(true);
-                setLoginUser(data.login);
-                setTimeout( () => setTextLoging('zalogowany'), 4000);
             } else {
                 setIsSubmitted(false);
-                setErrorMessages('Nie porawne dane');
-                setLoginUser('');
+                setErrorMessages(data.message);
             }
         } catch (err) {
             setIsSubmitted(false);
             setErrorMessages('Coś poszło nie tak');
-            setLoginUser('');
         } finally {
             //TODO wyłączyć loader
         }
@@ -54,23 +47,34 @@ export const LoginForm = () => {
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>
 
-                        <div className="login-title">Logowanie</div>
+                        <div className="login-title">Nowe konto</div>
             
                         <label className="login-label">
-                            Mail 
+                            Login 
                             <input 
-                                type="text" 
-                                onChange={ e => updateForm('email', e.target.value)} 
-                                required 
+                                type="text"
+                                onChange={ e => updateForm('login', e.target.value)} 
+                                required
+                                minLength={3}
                             />
                         </label>
                         
                         <label className="login-label">
+                            Mail 
+                            <input 
+                                type="email"
+                                onChange={ e => updateForm('email', e.target.value)} 
+                                required
+                            />
+                        </label>
+
+                        <label className="login-label">
                             Hasło 
                             <input 
-                                type="password" 
+                                type="password"
                                 onChange={ e => updateForm('password', e.target.value)} 
-                                required 
+                                required
+                                minLength={6}
                             />
                         </label>
                         
@@ -80,21 +84,12 @@ export const LoginForm = () => {
                         }
 
                         <button type="submit"  className="login-button">
-                            Zaloguj się
+                            Dodaj konto
                         </button>
 
                     </form>
 
                 </div>
-            </div>
-            <div className="login-new-count">
-                Nie masz jeszcze swojego {textAccount}?
-                <NavLink to="/newaccount" className='login-new-count__link' 
-                    onMouseOver={ () => ( setTextAccountButton("Wykop nowy grób") )} 
-                    onMouseOut={ () => ( setTextAccountButton("Załuż nowe konto") )} 
-                > 
-                    {textAccountButton}
-                </NavLink>
             </div>
         </>
     );
@@ -102,15 +97,11 @@ export const LoginForm = () => {
     const renderLoginSuccessful = (
         <div className="login-tombstone">
             <p> Witaj </p>
-            <p> {loginUser} </p>
-            <p> Jesteś prawidłowo </p> 
-            <p> {textLoging} </p>
+            <p> {form.login} </p>
+            <p> dodano </p>
+            <p> nowe konto </p>
         </div>
     )
-
-    useEffect( () => {
-        setTimeout( ()=> setTextAccount('konta'), 4000);
-    }, [])
 
     return (
         <div className="login-view">
