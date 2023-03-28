@@ -5,9 +5,12 @@ import { IconLogin } from '../../SVG/IconLogin'
 import { IconContact } from '../../SVG/IconContact'
 import { IconCandle } from '../../SVG/IconCandle'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { LoginContext } from '../contexts/login.context'
 
 export const Header = () => {
-
+    const context = useContext(LoginContext);
+    
     return <div className='Header'>
         <div className='logo'>
             <LogoMain />
@@ -29,9 +32,9 @@ export const Header = () => {
                 </div>
             </NavLink>
             <NavLink to='/login' className="control login">
-                <IconLogin isLoged={false}/>
+                <IconLogin isLoged={context.isLoged}/>
                 <div className='description'>
-                    Zaloguj
+                    {context.login}
                 </div>
             </NavLink>
         </div>

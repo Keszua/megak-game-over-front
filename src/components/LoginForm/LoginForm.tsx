@@ -3,8 +3,11 @@ import "./LoginForm.css";
 import { AuthLoginEntity, AuthLoginResponse } from 'types';
 import { fetchPOST } from "../../utils/fethMetod";
 import { NavLink } from "react-router-dom";
+import { useContext } from 'react'
+import { LoginContext } from '../contexts/login.context'
 
 export const LoginForm = () => {
+    const context = useContext(LoginContext);
     const [form, setForm] = useState<AuthLoginEntity>({
         email: '',
         password: '',
@@ -34,6 +37,8 @@ export const LoginForm = () => {
                 setIsSubmitted(true);
                 setLoginUser(data.login);
                 setTimeout( () => setTextLoging('zalogowany'), 4000);
+                context.setIsLoged(true);
+                context.setLogin(data.login);
             } else {
                 setIsSubmitted(false);
                 setErrorMessages('Nie porawne dane');

@@ -1,5 +1,4 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { Menu } from './components/Menu/Menu';
@@ -15,30 +14,38 @@ import { HomeView } from './views/HomeView';
 import { PromotionView } from './views/PromotionView';
 import { ServicesView } from './views/ServicesView';
 import { ProductsView } from './views/ProductsView';
+import { LoginContext } from './components/contexts/login.context';
 
-function App() {
-
-  return (
-    <div className="App">
-      <Header />
-      <div className='body'>
-        <Menu />
-        {/* <Content /> */}
-        <Routes >
-            <Route path="/" element={<HomeView />} />
-            <Route path="/basket" element={<BasketView />} />
-            <Route path="/contact" element={<ContactView />} />
-            <Route path="/login" element={<LoginView />} />
-            <Route path="/newaccount" element={<NewAccountView />} />
-            <Route path="/products" element={<ProductsView />} />
-            <Route path="/promotion" element={<PromotionView />} />
-            <Route path="/services" element={<ServicesView />} />
-            <Route path="*" element={<NotFoundView />} />
-        </Routes>
-        <Footer />
-      </div>
-    </div>
-  );
+export const App = () => {
+    const [isLoged, setIsLoged] = useState<boolean>(false);
+    const [login, setLogin] = useState<string>('Zaloguj');
+  
+    return (
+        <div className="App">
+            <LoginContext.Provider value={{
+                isLoged,
+                setIsLoged,
+                login,
+                setLogin,
+            }}>
+                <Header />
+                <div className='body'>
+                    <Menu />
+                    {/* <Content /> */}
+                    <Routes >
+                        <Route path="/" element={<HomeView />} />
+                        <Route path="/basket" element={<BasketView />} />
+                        <Route path="/contact" element={<ContactView />} />
+                        <Route path="/login" element={<LoginView />} />
+                        <Route path="/newaccount" element={<NewAccountView />} />
+                        <Route path="/products" element={<ProductsView />} />
+                        <Route path="/promotion" element={<PromotionView />} />
+                        <Route path="/services" element={<ServicesView />} />
+                        <Route path="*" element={<NotFoundView />} />
+                    </Routes>
+                    <Footer />
+                </div>
+            </LoginContext.Provider>
+        </div>
+    );
 }
-
-export default App;
