@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import './App.css';
+import { useEffect, useState } from 'react';import './App.css';
 import { Header } from './components/Header/Header';
 import { Menu } from './components/Menu/Menu';
 import { Content } from './components/Content/Content';
@@ -15,11 +14,33 @@ import { PromotionView } from './views/PromotionView';
 import { ServicesView } from './views/ServicesView';
 import { ProductsView } from './views/ProductsView';
 import { LoginContext } from './components/contexts/login.context';
+import { AuthLoginResponse } from 'types';
+import { fetchGET } from './utils/fethMetod';
 
 export const App = () => {
     const [isLoged, setIsLoged] = useState<boolean>(false);
     const [login, setLogin] = useState<string>('Zaloguj');
-  
+
+    useEffect( () => {
+        (async () => {
+            try {
+                const data: AuthLoginResponse = await fetchGET(`/auth/islogged`);
+
+                console.log(data);
+                if (data.isSucces) {
+                    setIsLoged(true);
+                    setLogin(data.login);
+                } else {
+                    setIsLoged(false);
+                    setLogin('Zaloguj');
+                }
+            } catch(e) {
+                setIsLoged(false);
+                setLogin('Zaloguj');
+            }
+        })();
+    }, []);
+        
     return (
         <div className="App">
             <LoginContext.Provider value={{
