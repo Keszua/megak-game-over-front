@@ -16,7 +16,7 @@ export const LoginForm = () => {
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const [loginUser, setLoginUser] = useState<string>('');
     const [textAccount, setTextAccount] = useState<string>('nagrobka');
-    const [textAccountButton, setTextAccountButton] = useState<string>('Załuż nowe konto');
+    const [textAccountButton, setTextAccountButton] = useState<string>('Załóż nowe konto');
     const [textLoging, setTextLoging] = useState<string>('zakopany');
 
     const updateForm = (key: string, value: any) => {
@@ -41,7 +41,7 @@ export const LoginForm = () => {
                 context.setLogin(data.login);
             } else {
                 setIsSubmitted(false);
-                setErrorMessages('Nie porawne dane');
+                setErrorMessages('Nieporawne dane');
                 setLoginUser('');
             }
         } catch (err) {
