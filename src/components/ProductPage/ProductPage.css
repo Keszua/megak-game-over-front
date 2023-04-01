@@ -1,0 +1,89 @@
+
+
+.Product_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px 2px;
+
+    min-height: 70vh;
+    /* background: #500; */
+}
+
+.Product_cart{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+
+}
+
+.Product__img {
+    min-width: 300px;
+    max-width: 500px;
+
+    min-height: 300px;
+    max-height: 500px;
+
+    margin: 4px;
+
+    background-color: blue;
+}
+
+.Product__short-description {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-around;
+    /* justify-self: center; */
+    align-items: center;
+    /* align-content: center; */
+
+    /* background-color: #123; */
+}
+
+.Product_description {
+    /* justify-self: left; */
+    align-self: start;
+    margin: 10px;
+
+    /* background-color: #321; */
+}
+
+.Product__price {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    font-size: 1.5em;
+}
+
+.button_style {
+    text-decoration: none;
+    color: #eee;
+    background-color: #111;
+    border: 3px solid var(--iconColor);
+    border-radius: 16px;
+    margin-top: 10px;
+    padding: 5px 15px;
+    font-size: 1.0em;
+}
+
+.button_style:hover {
+    background: var(--iconColor);
+    color: #111;
+}
+  
+.input_style{
+    background-color: #111;
+    color: #eee;
+    font-size: 1.0em;
+    margin: 8px;
+}
+
+.Product_label
+input {
+    text-align: center;  
+    border: 1px solid var(--iconColor);
+    width: 100px;
+} 
+  
+
+
