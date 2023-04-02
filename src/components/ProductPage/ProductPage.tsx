@@ -1,21 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
 import { ShopItemEntity } from 'types';
 import { fetchGET } from '../../utils/fethMetod';
 
 export const ProductPage = () => {
-
-    // const [form, setForm] = useState<ShortShopItemEntity>({
-    // const [form, setForm] = useState<any>({
-    //     id: '',
-    //     productName: '',
-    //     shortDescription: '',
-    //     price: 0,
-    //     quantity: 1,
-    //     imgUrl: null,
-    // });
-
     const location = useLocation();
     const [product, setProduct] = useState<ShopItemEntity>({
         id: '',
@@ -23,11 +12,16 @@ export const ProductPage = () => {
         shortDescription: '?',
         price: 0,
         quantity: null,
+        quantityInfinity: false,
         imgUrl: null,
         description: '?',
         show: false,
+        isPromotion: false,
     });
     const [count, setCount] = useState<number>(1);
+
+    const textRowCountSD = product.shortDescription ? product.shortDescription.split("\n").length : 0
+    const textRowCountLD = product.description ? product.description.split("\n").length : 0
 
     useEffect( () => {
         (async () => {
@@ -47,7 +41,13 @@ export const ProductPage = () => {
             <div className="Product__img" />
 
             <div className="Product__short-description">
-                {product?.shortDescription}
+                <textarea className='ProductEdit_textarea'
+                    value={product.shortDescription}
+                    rows={textRowCountSD}
+                    maxLength={255}
+                    disabled
+                />
+
                 <div className="Product__price">
                     <div style={{fontSize:"0.8em"}}>Cena: </div>
                     <strong style={{margin:"5px"}}>{Number(product?.price)}</strong>
@@ -68,12 +68,18 @@ export const ProductPage = () => {
                 </label>
 
                 <button className='button_style'>Do koszyka</button>
+                <NavLink to="/product-edit" state={location.state} className='button_style' >
+                    Edytuj
+                </NavLink> {/* TODO  przerobić na widoczne tylko dla admina */}
 
             </div>
         </div>
 
-        <div className="Product_description">
-            {product?.description}
-        </div>
+        <textarea className='ProductEdit_textarea Product_description'
+                value={product.description}
+                rows={textRowCountLD}
+                disabled
+        />
+
     </div>
 }

@@ -5,18 +5,24 @@ import { ProductItem } from './ProductItem';
 import { fetchGET } from '../../utils/fethMetod';
 
 interface Props {
-    category: string;
+    category?: string | null;
+    isPromotion?: boolean;
 }
 
 export const ProductList = (props: Props) => {
-    const { category } = props;
+    const { category, isPromotion } = props;
     const [productList, setProductList] = useState<ShortShopItemEntity[]>([]);
 
     useEffect( () => {
         (async () => {
             try {
-                const data: ShortShopItemEntity[] = await fetchGET(`/shop/category/${category}`);
-                setProductList(data);
+                if (isPromotion) {
+                    const data: ShortShopItemEntity[] = await fetchGET(`/shop/promotion`);
+                    setProductList(data);
+                } else if(category) {
+                    const data: ShortShopItemEntity[] = await fetchGET(`/shop/category/${category}`);
+                    setProductList(data);
+                }
             } catch(e) {
                 <h3>Coś poszło nie tak</h3>;
             }
@@ -37,7 +43,9 @@ export const ProductList = (props: Props) => {
                     shortDescription={product.shortDescription}
                     price={product.price}
                     quantity={product.quantity}
+                    quantityInfinity={product.quantityInfinity}
                     imgUrl={null}
+                    isPromotion={product.isPromotion}
                 />
             ))
         }

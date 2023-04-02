@@ -12,6 +12,7 @@ import { NewAccountView } from './views/NewAccountView';
 import { HomeView } from './views/HomeView';
 import { PromotionView } from './views/PromotionView';
 import { ProductItemView } from './views/ProductItemView';
+import { ProductsEditView } from './views/ProductEditView';
 import { ServicesView } from './views/ServicesView';
 import { ProductsView } from './views/ProductsView';
 import { LoginContext } from './components/contexts/login.context';
@@ -62,6 +63,7 @@ export const App = () => {
                         <Route path="/newaccount" element={<NewAccountView />} />
                         <Route path="/products" element={<ProductsView />} />
                         <Route path="/product-item" element={<ProductItemView />} />
+                        <Route path="/product-edit" element={<ProductsEditView />} />
                         <Route path="/promotion" element={<PromotionView />} />
                         <Route path="/services" element={<ServicesView />} />
                         <Route path="*" element={<NotFoundView />} />

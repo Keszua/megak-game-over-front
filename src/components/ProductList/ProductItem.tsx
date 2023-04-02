@@ -4,7 +4,7 @@ import { ShortShopItemEntity } from 'types';
 import { NavLink } from 'react-router-dom';
 
 export const ProductItem = (props: ShortShopItemEntity) => {
-    const { id, productName, shortDescription, price, quantity} = props;
+    const { id, productName, shortDescription, price, quantity, quantityInfinity} = props;
 
     return <NavLink to="/product-item" state={id} className="ProductItem__container">
         <div className="ProductItem__img" />
@@ -20,12 +20,12 @@ export const ProductItem = (props: ShortShopItemEntity) => {
                 <div>{Number(price)}</div>
             </div>
             {
-                quantity 
-                ? <div className="ProductItem__info-availability">
+                quantityInfinity
+                ? <div></div>
+                : <div className="ProductItem__info-availability">
                     <div>Dostępne</div>
                     <div>{Number(quantity)}</div>
                 </div>
-                : <div></div>
                 
             }
         </div>
