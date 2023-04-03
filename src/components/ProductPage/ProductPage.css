@@ -120,14 +120,6 @@ input.product_price {
     text-align: left; 
 }
 
-
-.Flex_row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
-}
-
 .Product__promotion {
     align-self: self-end;
     margin-right: 15px;
