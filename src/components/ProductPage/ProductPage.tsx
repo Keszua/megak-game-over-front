@@ -11,7 +11,7 @@ export const ProductPage = () => {
         productName: '?',
         shortDescription: '?',
         price: 0,
-        quantity: null,
+        quantity: 0,
         quantityInfinity: false,
         imgUrl: null,
         description: '?',
@@ -41,6 +41,7 @@ export const ProductPage = () => {
             <div className="Product__img" />
 
             <div className="Product__short-description">
+
                 <textarea className='ProductEdit_textarea'
                     value={product.shortDescription}
                     rows={textRowCountSD}
@@ -54,7 +55,6 @@ export const ProductPage = () => {
                     <div style={{fontSize:"0.5em"}}>zł</div>
                 </div>
                 (Suma: {(Number(product?.price) * count).toFixed(2)} zł )
-
 
                 <label className='Product_label'>
                     Ilość

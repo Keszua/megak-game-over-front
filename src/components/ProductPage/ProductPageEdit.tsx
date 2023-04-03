@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
-import { ShopItemEntity } from 'types';
-import { fetchGET } from '../../utils/fethMetod';
+import { CreateNewProductsRes, DelOneProductsRes, ShopItemEntity, UpdateOneProductsRes } from 'types';
+import { fetchDELETE, fetchGET, fetchPOST, fetchPUT } from '../../utils/fethMetod';
 
 export const ProductPageEdit = () => {
     const location = useLocation();
@@ -10,16 +10,15 @@ export const ProductPageEdit = () => {
         id: '',
         productName: '?',
         shortDescription: '?',
-        price: 0.01,
-        quantity: null,
+        price: 1.00,
+        quantity: 0,
         quantityInfinity: false,
         imgUrl: null,
         description: '?',
         show: false,
         isPromotion: false,
     });
-    const [count, setCount] = useState<number>(1);
-    const [infoMessage, setInfoMessage] =  useState<string>('info');
+    const [infoMessage, setInfoMessage] =  useState<string>('');
 
     const textRowCountSD = product.shortDescription ? product.shortDescription.split("\n").length : 0
     const textRowCountLD = product.description ? product.description.split("\n").length : 0
@@ -31,12 +30,74 @@ export const ProductPageEdit = () => {
         }));
     };
 
-    const saveNewItem = () => {
-        console.log('Nowy wpis');
+    const saveToNewItem = async () => {
+        const data: CreateNewProductsRes = await fetchPOST(`/shop`, product);
+
+        if ((data as ShopItemEntity).id !== undefined ) {
+            setInfoMessage("Dodano nowy przedmiot");
+            setTimeout( () => {
+                setInfoMessage('');
+            }, 5000);
+        }
+
+        if ((data as any).isSucces !== undefined) { 
+            if ((data as any).isSucces === false) {
+                setInfoMessage((data as any).message);
+                setTimeout( () => {
+                    setInfoMessage('');
+                }, 5000);
+            }
+        }
+
+        // switch (data as any) {
+        //     case 'isSucces':
+        //         console.log('obiekt:', data);
+                
+        //         break;
+        //     default:
+        //         console.log('default:', data);
+        //         break;
+        // }
     }
 
-    const saveChanges = () => {
-        console.log('Zapisz zminy');
+    const saveChanges = async () => {
+        const data: UpdateOneProductsRes = await fetchPUT(`/shop`, product);
+
+        if (data.isSucces) {
+            setInfoMessage("Zmiana zapisana prawidłowo");
+            setTimeout( () => {
+                setInfoMessage('');
+            }, 5000);
+        } else {
+            setInfoMessage("Coś poszło nie tak...")
+            setTimeout( () => {
+                setInfoMessage('');
+            }, 10000);
+        }
+    }
+
+    const deleteItem = async () => {
+        const youShure =  window.confirm(`Czy jesteś pewien, \n że chcesz trwale usunąć ${product.productName}? `);
+
+        if (youShure) {
+            const data: DelOneProductsRes = await fetchDELETE(`/shop/${location.state}`);
+            if (data.isSucces) {
+                setInfoMessage(`${product.productName} został trwale usunięty`);
+                setTimeout( () => {
+                    setInfoMessage('');
+                }, 5000);
+            } else {
+                setInfoMessage("Coś poszło nie tak...")
+                setTimeout( () => {
+                    setInfoMessage('');
+                }, 10000);
+            }
+        } else {
+            setInfoMessage("Coś poszło nie tak...")
+            setTimeout( () => {
+                setInfoMessage('');
+            }, 10000);
+        }
     }
 
     useEffect( () => {
@@ -49,6 +110,12 @@ export const ProductPageEdit = () => {
             }
         })();
     }, []);
+
+    if ((product as any).isSucces !== undefined) { 
+        if ((product as any).isSucces === false) {
+            return <h3>Wygląda na to, że produkt nie istnieje...</h3>;
+        }
+    }
 
     return <div className="Product_container">
 
@@ -65,6 +132,8 @@ export const ProductPageEdit = () => {
             <div className="Product__img" />
 
             <div className="Product__short-description">
+
+
                 <textarea className='ProductEdit_textarea'
                     value={product.shortDescription}
                     rows={textRowCountSD}
@@ -83,7 +152,6 @@ export const ProductPageEdit = () => {
                     />
                     <div style={{fontSize:"0.5em"}}>zł</div>
                 </div>
-
 
                 <div className='Flex_row'>
                     <label className='Product_label'>
@@ -112,7 +180,8 @@ export const ProductPageEdit = () => {
 
                 <div>
                     <button className='button_style' onClick={saveChanges}>Zapisz zmiany</button>
-                    <button className='button_style' onClick={saveNewItem}>Zapisz jako nowy produkt</button>
+                    <button className='button_style' onClick={saveToNewItem}>Zapisz jako nowy produkt</button>
+                    <button className='button_style' onClick={deleteItem}>Usuń</button>
                     <NavLink to="/product-item" state={location.state} className='button_style' >
                         Anuluj
                     </NavLink>
