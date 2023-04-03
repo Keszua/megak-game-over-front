@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
-import { CreateNewProductsRes, DelOneProductsRes, ShopItemEntity, UpdateOneProductsRes } from 'types';
+import { CreateNewProductsRes, DelOneProductsRes, ShopItemEntity, ShopProductCategory, UpdateOneProductsRes } from 'types';
 import { fetchDELETE, fetchGET, fetchPOST, fetchPUT } from '../../utils/fethMetod';
 
 export const ProductPageEdit = () => {
@@ -17,6 +17,7 @@ export const ProductPageEdit = () => {
         description: '?',
         show: false,
         isPromotion: false,
+        category: ShopProductCategory.PRODUCT,
     });
     const [infoMessage, setInfoMessage] =  useState<string>('');
 
@@ -143,7 +144,6 @@ export const ProductPageEdit = () => {
                     </label>
                 </div>
 
-
                 <textarea className='ProductEdit_textarea'
                     value={product.shortDescription}
                     rows={textRowCountSD}
@@ -186,7 +186,17 @@ export const ProductPageEdit = () => {
                     </label>
                 </div>
 
-                Dodać kategorię
+                <div className='Flex_row'>
+                    Kategoria
+                    <select 
+                        name="gender"
+                        value={product.category}
+                        onChange={ e => updateProduct('category', e.target.value)}
+                    >
+                        <option value={ShopProductCategory.PRODUCT}>Produkt</option>
+                        <option value={ShopProductCategory.SERVICE}>Usługa</option>
+                    </select>
+                </div>
 
                 <div>
                     <button className='button_style' onClick={saveChanges}>Zapisz zmiany</button>

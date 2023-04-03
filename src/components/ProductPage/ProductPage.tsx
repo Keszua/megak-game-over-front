@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
-import { ShopItemEntity } from 'types';
+import { ShopItemEntity, ShopProductCategory } from 'types';
 import { fetchGET } from '../../utils/fethMetod';
 
 export const ProductPage = () => {
@@ -17,6 +17,7 @@ export const ProductPage = () => {
         description: '?',
         show: false,
         isPromotion: false,
+        category: ShopProductCategory.PRODUCT,
     });
     const [count, setCount] = useState<number>(1);
 
