@@ -41,6 +41,9 @@ export const ProductPage = () => {
             <div className="Product__img" />
 
             <div className="Product__short-description">
+                <div className={`Product__promotion ${ product.isPromotion ? 'Product__promotion_active' : 'Product__promotion_no_active'}` } >
+                    Promocja
+                </div>
 
                 <textarea className='ProductEdit_textarea'
                     value={product.shortDescription}

@@ -132,6 +132,16 @@ export const ProductPageEdit = () => {
             <div className="Product__img" />
 
             <div className="Product__short-description">
+                <div className="Product__promotion">
+                    <label className={`input_checkbox ${ product.isPromotion ? 'Product__promotion_active' : ''}`}>
+                        <input className='input_checkbox'
+                            type="checkbox"
+                            checked={product.isPromotion}
+                            onChange={ (e: any) => updateProduct('isPromotion', !product.isPromotion)}
+                        /> 
+                            Promocja
+                    </label>
+                </div>
 
 
                 <textarea className='ProductEdit_textarea'

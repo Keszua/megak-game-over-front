@@ -127,3 +127,17 @@ input.product_price {
     flex-wrap: wrap;
     align-items: baseline;
 }
+
+.Product__promotion {
+    align-self: self-end;
+    margin-right: 15px;
+}
+
+.Product__promotion_active {
+    color: yellow;
+    font-weight: bold;
+}
+
+.Product__promotion_no_active {
+    visibility: hidden;
+}
