@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import "./LoginForm.css";
-import { AuthLoginEntity, AuthLoginResponse } from 'types';
-import { fetchPOST } from "../../utils/fethMetod";
+import { AuthLoginEntity, AuthLoginResponse, UserPermissions } from 'types';
+import { fetchGET, fetchPOST } from "../../utils/fethMetod";
 import { NavLink } from "react-router-dom";
 import { useContext } from 'react'
 import { LoginContext } from '../contexts/login.context'
@@ -13,11 +13,10 @@ export const LoginForm = () => {
         password: '',
     });
     const [errorMessages, setErrorMessages] = useState<string>('');
-    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-    const [loginUser, setLoginUser] = useState<string>('');
     const [textAccount, setTextAccount] = useState<string>('nagrobka');
-    const [textAccountButton, setTextAccountButton] = useState<string>('Załuż nowe konto');
+    const [textAccountButton, setTextAccountButton] = useState<string>('Załóż nowe konto');
     const [textLoging, setTextLoging] = useState<string>('zakopany');
+    const [textLogout, setTextLogout] = useState<string>('Wyloguj');
 
     const updateForm = (key: string, value: any) => {
         setForm( form => ({
@@ -34,24 +33,58 @@ export const LoginForm = () => {
             const data: AuthLoginResponse = await fetchPOST(`/auth/login`, { ...form });
             
             if (data.isSucces) {
-                setIsSubmitted(true);
-                setLoginUser(data.login);
+                context.setIsLoged(true);
+                context.setLogin(data.login);
+                context.setRole(data.role);
                 setTimeout( () => setTextLoging('zalogowany'), 4000);
                 context.setIsLoged(true);
                 context.setLogin(data.login);
             } else {
-                setIsSubmitted(false);
-                setErrorMessages('Nie porawne dane');
-                setLoginUser('');
+                context.setIsLoged(false);
+                setErrorMessages('Nieporawne dane');
+                context.setLogin('');
             }
         } catch (err) {
-            setIsSubmitted(false);
+            context.setIsLoged(false);
             setErrorMessages('Coś poszło nie tak');
-            setLoginUser('');
+            context.setLogin('');
         } finally {
             //TODO wyłączyć loader
         }
     };
+
+    const handleLogout = async () => {
+        try {
+            const data: AuthLoginResponse = await fetchGET(`/auth/logout`);
+            setErrorMessages('Zostałes prawidłowo wylogowany');
+        } catch (err) {
+            setErrorMessages('Coś poszło nie tak');
+        } finally {
+            context.setIsLoged(false);
+            context.setRole(UserPermissions.USER);
+            context.setLogin('Zaloguj');
+        }
+    }
+
+    // useEffect( () => {
+    //     (async () => {
+    //         try {
+    //             const data: AuthLoginResponse = await fetchGET(`/auth/islogged`);
+
+    //             console.log('useEfect', data);
+    //             if (data.isSucces) {
+    //                 context.setIsLoged(true);
+    //                 context.setLogin(data.login);
+    //             } else {
+    //                 context.setIsLoged(false);
+    //                 context.setLogin('Zaloguj');
+    //             }
+    //         } catch(e) {
+    //             context.setIsLoged(false);
+    //             context.setLogin('Zaloguj');
+    //         }
+    //     })();
+    // }, []);
 
     const renderForm = ( 
         <>
@@ -105,12 +138,21 @@ export const LoginForm = () => {
     );
 
     const renderLoginSuccessful = (
+        <>
         <div className="login-tombstone">
             <p> Witaj </p>
-            <p> {loginUser} </p>
+            <p> {context.login} </p>
             <p> Jesteś prawidłowo </p> 
             <p> {textLoging} </p>
         </div>
+        <button className="login-button" 
+            onClick={handleLogout} 
+            onMouseOver={ () => ( setTextLogout("Świeć Panie nad jego duszą") )} 
+            onMouseOut={ () => ( setTextLogout("Wyloguj") )} 
+        >
+            {textLogout}
+        </button>
+        </>
     )
 
     useEffect( () => {
@@ -119,7 +161,7 @@ export const LoginForm = () => {
 
     return (
         <div className="login-view">
-            {isSubmitted ? renderLoginSuccessful : renderForm}
+            {context.isLoged ? renderLoginSuccessful : renderForm}
         </div>
     );
 }

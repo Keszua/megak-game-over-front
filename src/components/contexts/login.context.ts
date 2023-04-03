@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { UserPermissions } from 'types';
 
 interface LoginContextType {
     isLoged: boolean,
@@ -6,6 +7,9 @@ interface LoginContextType {
     
     login: string,
     setLogin: (val: string) => void,
+
+    role: UserPermissions,
+    setRole: (val: UserPermissions) => void,
 }
 
 export const LoginContext = createContext<LoginContextType>( {
@@ -13,4 +17,6 @@ export const LoginContext = createContext<LoginContextType>( {
     setIsLoged: (val: boolean) => {},
     login: 'Zaloguj',
     setLogin: (val: string) => {},
+    role: UserPermissions.USER,
+    setRole: (val: UserPermissions) => {},
 } );

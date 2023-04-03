@@ -15,7 +15,7 @@
   
   text-align: center;
   color: white;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(14px + 1vW);
 }
 
 .body {
@@ -23,7 +23,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  /* height: 1500px; */
   min-height: 250px;
   background: #111;
 }

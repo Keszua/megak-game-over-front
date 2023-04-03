@@ -53,24 +53,24 @@ Przy grafice pomagała mi żona Marta Michalczyk
 - [x] Instalacj Reacta w wersji TypeScript
 - [x] Założenie repozytorium na GitHub
 - [x] Przygotowanie pliku README
-- [ ] Konfiguracj Git i wypchniecie projektu na zdlane repozytorium
+- [x] Konfiguracj Git i wypchniecie projektu na zdlane repozytorium
 
-- [ ] Połączenie wspólnych typów FE i BE
-- [ ] Projekt podziału strony
-- [ ] Projekt przykładowego nagłówka
+- [x] Połączenie wspólnych typów FE i BE
+- [x] Projekt podziału strony
+- [x] Projekt przykładowego nagłówka
 - [ ] Projekt przykładowej stopki
-- [ ] Widoki i Routing
+- [x] Widoki i Routing
 - [ ] Dostosowanie stylowania do widoku na urządzenia mobilne
 - [ ] Wstawienie przykładowych sliderów
 
-- [ ] Projekt widoku podstrony z ofertami
-- [ ] Obsługa dodawania oferty
-- [ ] Obsługa edycji oferty
-- [ ] Obsługa usuwania oferty
+- [x] Projekt widoku podstrony z ofertami
+- [x] Obsługa dodawania oferty
+- [x] Obsługa edycji oferty
+- [x] Obsługa usuwania oferty
 - [ ] Obsługa dodawania obrazków do ofert
 - [ ] Paginacja 
 
-- [ ] Obsługa logowania
+- [x] Obsługa logowania
 - [ ] Obsługa koszyka
 
  

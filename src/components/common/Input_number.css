@@ -1,0 +1,54 @@
+
+.Input_number 
+input[type="number"] {
+    -webkit-appearance: textfield !important;
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+
+.Input_number 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+
+
+.Input_number {
+    /* border: 1px #dcd3d3 solid; */
+    /* width: 40vw; */
+    /* height: 50px; */
+    /* padding: 10px; */
+    display: flex;
+    border-radius: 5px;
+    font-size: 1.0em;
+}
+
+.Input_number div {
+    margin: 8px;
+}
+
+.plusminus {
+    /* height: 100%; */
+    width: 30%;
+    /* background: white; */
+    border: none;
+    /* font-size: 40px; */
+    color: #f5e;
+}
+
+.plus {
+    border-radius: 10px 0px 0px 10px;
+}
+  
+.minus {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.num {
+    /* height: 100%; */
+    width: 40%;
+    border: none;
+    /* font-size: 30px; */
+}
