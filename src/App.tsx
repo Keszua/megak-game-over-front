@@ -16,32 +16,34 @@ import { ProductsEditView } from './views/ProductEditView';
 import { ServicesView } from './views/ServicesView';
 import { ProductsView } from './views/ProductsView';
 import { LoginContext } from './components/contexts/login.context';
-import { AuthLoginResponse } from 'types';
+import { AuthLoginResponse, UserPermissions } from 'types';
 import { fetchGET } from './utils/fethMetod';
 
 export const App = () => {
     const [isLoged, setIsLoged] = useState<boolean>(false);
     const [login, setLogin] = useState<string>('Zaloguj');
+    const [role, setRole] = useState<UserPermissions>(UserPermissions.USER);
+    
 
-    useEffect( () => {
-        (async () => {
-            try {
-                const data: AuthLoginResponse = await fetchGET(`/auth/islogged`);
+    // useEffect( () => {
+    //     (async () => {
+    //         try {
+    //             const data: AuthLoginResponse = await fetchGET(`/auth/islogged`);
 
-                console.log(data);
-                if (data.isSucces) {
-                    setIsLoged(true);
-                    setLogin(data.login);
-                } else {
-                    setIsLoged(false);
-                    setLogin('Zaloguj');
-                }
-            } catch(e) {
-                setIsLoged(false);
-                setLogin('Zaloguj');
-            }
-        })();
-    }, []);
+    //             console.log(data);
+    //             if (data.isSucces) {
+    //                 setIsLoged(true);
+    //                 setLogin(data.login);
+    //             } else {
+    //                 setIsLoged(false);
+    //                 setLogin('Zaloguj');
+    //             }
+    //         } catch(e) {
+    //             setIsLoged(false);
+    //             setLogin('Zaloguj');
+    //         }
+    //     })();
+    // }, []);
         
     return (
         <div className="App">
@@ -50,6 +52,8 @@ export const App = () => {
                 setIsLoged,
                 login,
                 setLogin,
+                role,
+                setRole,
             }}>
                 <Header />
                 <div className='body'>

@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
-import { ShopItemEntity, ShopProductCategory } from 'types';
+import { ShopItemEntity, ShopProductCategory, UserPermissions } from 'types';
 import { fetchGET } from '../../utils/fethMetod';
+import { LoginContext } from '../contexts/login.context';
 
 export const ProductPage = () => {
+    const context = useContext(LoginContext);
     const location = useLocation();
     const [product, setProduct] = useState<ShopItemEntity>({
         id: '',
@@ -34,6 +36,12 @@ export const ProductPage = () => {
             }
         })();
     }, []);
+
+    if ((product as any).isSucces !== undefined) { 
+        if ((product as any).isSucces === false) {
+            return <h3>Wygląda na to, że produkt nie istnieje...</h3>;
+        }
+    }
 
     return <div className="Product_container">
         <h1>{product?.productName}</h1>
@@ -72,9 +80,14 @@ export const ProductPage = () => {
                 </label>
 
                 <button className='button_style'>Do koszyka</button>
-                <NavLink to="/product-edit" state={location.state} className='button_style' >
-                    Edytuj
-                </NavLink> {/* TODO  przerobić na widoczne tylko dla admina */}
+                
+                { 
+                    context.role ===  UserPermissions.ADMIN 
+                    ?   <NavLink to="/product-edit" state={location.state} className='button_style' >
+                            Edytuj
+                        </NavLink>
+                    :   null
+                }
 
             </div>
         </div>
