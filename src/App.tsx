@@ -72,8 +72,8 @@ export const App = () => {
                         <Route path="/services" element={<ServicesView />} />
                         <Route path="*" element={<NotFoundView />} />
                     </Routes>
-                    <Footer />
                 </div>
+                <Footer />
             </LoginContext.Provider>
         </div>
     );
