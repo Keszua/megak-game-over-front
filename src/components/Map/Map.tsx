@@ -19,7 +19,7 @@ export const Map = (props: Props) => {
                 />
                 <Marker position={position}>
                     <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
+                        Nie musisz do nas przychodić. <br/><br/> To my przyjedziemy po Ciebie!
                     </Popup>
                 </Marker>
             </MapContainer>
