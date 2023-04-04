@@ -54,22 +54,21 @@ Przy grafice pomagała mi żona Marta Michalczyk
 - [x] Założenie repozytorium na GitHub
 - [x] Przygotowanie pliku README
 - [x] Konfiguracj Git i wypchniecie projektu na zdlane repozytorium
-
 - [x] Połączenie wspólnych typów FE i BE
 - [x] Projekt podziału strony
 - [x] Projekt przykładowego nagłówka
 - [ ] Projekt przykładowej stopki
 - [x] Widoki i Routing
 - [ ] Dostosowanie stylowania do widoku na urządzenia mobilne
-- [ ] Wstawienie przykładowych sliderów
-
+- [x] Wstawienie przykładowych sliderów
+- [ ] Obsługa docelowych sliderów
+- [ ] Obsługa okienka z wyszukiwaniem
 - [x] Projekt widoku podstrony z ofertami
 - [x] Obsługa dodawania oferty
 - [x] Obsługa edycji oferty
 - [x] Obsługa usuwania oferty
 - [ ] Obsługa dodawania obrazków do ofert
 - [ ] Paginacja 
-
 - [x] Obsługa logowania
 - [ ] Obsługa koszyka
 
