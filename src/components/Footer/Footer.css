@@ -1,0 +1,21 @@
+
+.Footer {
+    display: flex;
+    position: relative;
+    width: auto;
+    background: #222;
+    min-height: 100px;
+    padding: 20px 50px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    color: #AAA;
+    font-size: 0.6em;
+}
+
+.Footer a{
+    text-decoration: none;
+    color: #FF9;
+
+}
