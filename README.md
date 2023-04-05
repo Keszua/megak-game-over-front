@@ -20,7 +20,7 @@ Przykład strony dla zakładu usługowego.
 - routing
 - rejstracja, logowanie
 
-Przy grafice pomagała mi żona Marta Michalczyk
+Przy grafice pomagała mi moja żona Marta Michalczyk
 
 <hr/>
 
@@ -60,17 +60,21 @@ Przy grafice pomagała mi żona Marta Michalczyk
 - [ ] Projekt przykładowej stopki
 - [x] Widoki i Routing
 - [ ] Dostosowanie stylowania do widoku na urządzenia mobilne
-- [x] Wstawienie przykładowych sliderów
-- [ ] Obsługa docelowych sliderów
+- [ ] Slidery na pierwszej stronie
+    - [x] Wstawienie przykładowych sliderów
+    - [ ] Obsługa docelowych sliderów (teksty i obrazy zaczytywane z bazy danych)
 - [ ] Obsługa okienka z wyszukiwaniem
 - [x] Projekt widoku podstrony z ofertami
-- [x] Obsługa dodawania oferty
-- [x] Obsługa edycji oferty
-- [x] Obsługa usuwania oferty
-- [ ] Obsługa dodawania obrazków do ofert
+- [x] Projekt widoku podstrony z edycją oferty
+    - [x] Obsługa dodawania oferty
+    - [x] Obsługa edycji oferty
+    - [x] Obsługa usuwania oferty
+    - [ ] Obsługa dodawania obrazków do ofert
 - [ ] Paginacja 
 - [x] Obsługa logowania
 - [ ] Obsługa koszyka
+    - [ ] projet widoku koszyka
+    - [ ] edycja prduktów w koszyku (zmiana ilości produktów, usówanie produktu)
 
  
 <hr/>
@@ -119,7 +123,7 @@ npm run start:prod
 
 ## Kontakt
 
-Mój profil na <a href="https://www.linkedin.com/in/karol-michalczyk-keszua83/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/linkedin/linkedin-ar21.svg" alt="git" width="85" height="40" align="center"/> 
+Mój profil na <a href="https://www.linkedin.com/in/karol-michalczyk-keszua83/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/linkedin/linkedin-ar21.svg" alt="www.linkedin.com" width="85" height="40" align="center"/> 
 </a>
 
 #### mail: [Gmail](mailto:keszua@gmail.com)
