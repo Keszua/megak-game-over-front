@@ -52,6 +52,13 @@
     /* background: #00F; */
 }
 
+.ProductItem__promocja {
+    font-size: 0.5em;
+    margin:2px;
+    font-weight: bold;
+    color: yellow;
+}
+
 .ProductItem__info-price {
     margin:5px;
 
