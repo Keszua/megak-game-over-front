@@ -8,14 +8,14 @@ export const ProductPageEdit = () => {
     const location = useLocation();
     const [product, setProduct] = useState<ShopItemEntity>({
         id: '',
-        productName: '?',
-        shortDescription: '?',
+        productName: 'Nazwa produktu',
+        shortDescription: 'Krótki opis, widoczny na liście produktów',
         price: 1.00,
-        quantity: 0,
+        quantity: 1,
         quantityInfinity: false,
         imgUrl: null,
-        description: '?',
-        show: false,
+        description: 'Opisz dokładnie nowy produkt lub usługę.',
+        show: true,
         isPromotion: false,
         category: ShopProductCategory.PRODUCT,
     });
