@@ -32,48 +32,64 @@ export const ProductPageEdit = () => {
     };
 
     const saveToNewItem = async () => {
-        const data: CreateNewProductsRes = await fetchPOST(`/shop`, product);
+        try {
+            const data: CreateNewProductsRes = await fetchPOST(`/shop`, product);
 
-        if ((data as ShopItemEntity).id !== undefined ) {
-            setInfoMessage("Dodano nowy przedmiot");
-            setTimeout( () => {
-                setInfoMessage('');
-            }, 5000);
-        }
-
-        if ((data as any).isSucces !== undefined) { 
-            if ((data as any).isSucces === false) {
-                setInfoMessage((data as any).message);
+            if ((data as any).message === 'Unauthorized') {
+                setInfoMessage("Nie masz uprawnień");
                 setTimeout( () => {
                     setInfoMessage('');
                 }, 5000);
             }
-        }
 
-        // switch (data as any) {
-        //     case 'isSucces':
-        //         console.log('obiekt:', data);
-                
-        //         break;
-        //     default:
-        //         console.log('default:', data);
-        //         break;
-        // }
-    }
-
-    const saveChanges = async () => {
-        const data: UpdateOneProductsRes = await fetchPUT(`/shop`, product);
-
-        if (data.isSucces) {
-            setInfoMessage("Zmiana zapisana prawidłowo");
+            if ((data as ShopItemEntity).id !== undefined ) {
+                setInfoMessage("Dodano nowy przedmiot");
+                setTimeout( () => {
+                    setInfoMessage('');
+                }, 5000);
+            }
+    
+            if ((data as any).isSucces !== undefined) { 
+                if ((data as any).isSucces === false) {
+                    setInfoMessage((data as any).message);
+                    setTimeout( () => {
+                        setInfoMessage('');
+                    }, 5000);
+                }
+            }
+        } catch (err) {
+            setInfoMessage(`Coś poszło nie tak... E11`);
             setTimeout( () => {
                 setInfoMessage('');
             }, 5000);
-        } else {
-            setInfoMessage("Coś poszło nie tak...")
+        }
+    }
+
+    const saveChanges = async () => {
+        try {
+            const data: UpdateOneProductsRes = await fetchPUT(`/shop`, product);
+
+            if ((data as any).message === 'Unauthorized') {
+                setInfoMessage("Nie masz uprawnień");
+                setTimeout( () => {
+                    setInfoMessage('');
+                }, 5000);
+            } else if (data.isSucces) {
+                setInfoMessage("Zmiana zapisana prawidłowo");
+                setTimeout( () => {
+                    setInfoMessage('');
+                }, 5000);
+            } else {
+                setInfoMessage("Coś poszło nie tak... E21");
+                setTimeout( () => {
+                    setInfoMessage('');
+                }, 5000);
+            }
+        } catch (err) {
+            setInfoMessage("Coś poszło nie tak... E22");
             setTimeout( () => {
                 setInfoMessage('');
-            }, 10000);
+            }, 5000);
         }
     }
 
@@ -88,13 +104,17 @@ export const ProductPageEdit = () => {
                     setInfoMessage('');
                 }, 5000);
             } else {
-                setInfoMessage("Coś poszło nie tak...")
+                if (data.message) {
+                    setInfoMessage(data.message);
+                } else {
+                    setInfoMessage("Coś poszło nie tak... E31");
+                }
                 setTimeout( () => {
                     setInfoMessage('');
                 }, 10000);
             }
         } else {
-            setInfoMessage("Coś poszło nie tak...")
+            setInfoMessage("Coś poszło nie tak... E32");
             setTimeout( () => {
                 setInfoMessage('');
             }, 10000);
@@ -156,7 +176,7 @@ export const ProductPageEdit = () => {
                     <input className='ProductEdit_input product_price'
                         type="number"
                         value={(product.price).toFixed(2)}
-                        min="0.01"
+                        min="0.00"
                         max="99999999"
                         onChange={ (e: any) => updateProduct('price', Number(e.target.value))} 
                     />
@@ -170,7 +190,7 @@ export const ProductPageEdit = () => {
                             type="number"
                             value={Number(product?.quantity)}
                             min="1"
-                            max={product?.quantity != null ? `${product?.quantity}` : "9999" }
+                            max="9999"
                             onChange={ (e: any) => updateProduct('quantity', e.target.value)}
                             disabled = {product?.quantityInfinity}
                             style={ product?.quantityInfinity ? {color: '#333'} : {}}
