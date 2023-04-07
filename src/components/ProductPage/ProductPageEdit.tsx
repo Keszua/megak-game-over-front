@@ -39,7 +39,7 @@ export const ProductPageEdit = () => {
             const data: CreateNewProductsRes = await fetchPOST(`/shop`, product);
 
             if ((data as any).message === 'Unauthorized') {
-                setInfoMessage("Nie masz uprawnień");
+                setInfoMessage("Nie jesteś zalogowany lub nie masz uprawnień");
                 setTimeout( () => {
                     setInfoMessage('');
                 }, 5000);
@@ -61,7 +61,7 @@ export const ProductPageEdit = () => {
                 }
             }
         } catch (err) {
-            setInfoMessage(`Coś poszło nie tak... E11`);
+            setInfoMessage(`Coś poszło nie tak... (E11)`);
             setTimeout( () => {
                 setInfoMessage('');
             }, 5000);
@@ -76,7 +76,7 @@ export const ProductPageEdit = () => {
             const data: UpdateOneProductsRes = await fetchPUT(`/shop`, product);
 
             if ((data as any).message === 'Unauthorized') {
-                setInfoMessage("Nie masz uprawnień");
+                setInfoMessage("Nie jesteś zalogowany lub nie masz uprawnień");
                 setTimeout( () => {
                     setInfoMessage('');
                 }, 5000);
@@ -86,13 +86,13 @@ export const ProductPageEdit = () => {
                     setInfoMessage('');
                 }, 5000);
             } else {
-                setInfoMessage("Coś poszło nie tak... E21");
+                setInfoMessage("Coś poszło nie tak... (E21)");
                 setTimeout( () => {
                     setInfoMessage('');
                 }, 5000);
             }
         } catch (err) {
-            setInfoMessage("Coś poszło nie tak... E22");
+            setInfoMessage("Coś poszło nie tak... (E22)");
             setTimeout( () => {
                 setInfoMessage('');
             }, 5000);
@@ -116,14 +116,14 @@ export const ProductPageEdit = () => {
                 if (data.message) {
                     setInfoMessage(data.message);
                 } else {
-                    setInfoMessage("Coś poszło nie tak... E31");
+                    setInfoMessage("Coś poszło nie tak... (E31)");
                 }
                 setTimeout( () => {
                     setInfoMessage('');
                 }, 10000);
             }
         } else {
-            setInfoMessage("Coś poszło nie tak... E32");
+            setInfoMessage("Coś poszło nie tak... (E32)");
             setTimeout( () => {
                 setInfoMessage('');
             }, 10000);
