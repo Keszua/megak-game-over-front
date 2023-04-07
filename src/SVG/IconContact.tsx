@@ -1,4 +1,4 @@
-import { settings } from "../components/globalSettings"
+import { settings } from "../config/globalSettings"
 
 export const IconContact = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="60"  viewBox="0 0 65 65">

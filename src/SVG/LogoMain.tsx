@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { settings } from "../components/globalSettings"
+import { settings } from "../config/globalSettings"
 
 export const LogoMain = () => {
     const rece: string[] = [

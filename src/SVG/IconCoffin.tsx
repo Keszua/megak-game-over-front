@@ -1,4 +1,4 @@
-import { settings } from "../components/globalSettings"
+import { settings } from "../config/globalSettings"
 
 export const IconCoffin = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="60"  viewBox="0 -50 600 560">

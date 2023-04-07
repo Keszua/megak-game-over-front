@@ -1,4 +1,4 @@
-import { settings } from "../components/globalSettings"
+import { settings } from "../config/globalSettings"
 
 interface Props {
     isItems: boolean,

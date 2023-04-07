@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { settings } from "../../globalSettings"
+import { settings } from "../../../config/globalSettings"
 
 export const CandleSVG = () => {
     const [color, setColor] = useState<string>("#DD0")
