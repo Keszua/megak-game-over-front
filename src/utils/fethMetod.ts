@@ -46,3 +46,12 @@ export const fetchDELETE = async (path: string ): Promise<any> => {
 
     return await res.json();
 };
+
+export const fetchPHOTO = async (path: string, formData: FormData ): Promise<any> => {
+    const res = await fetch(`${apiUrl}${path}`, {
+                method: 'POST',
+                body: formData
+    });
+
+    return await res.json();
+};

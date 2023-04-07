@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
-import { CreateNewProductsRes, DelOneProductsRes, ShopItemEntity, ShopProductCategory, UpdateOneProductsRes } from 'types';
-import { fetchDELETE, fetchGET, fetchPOST, fetchPUT } from '../../utils/fethMetod';
+import { CreateNewProductsRes, DelOneProductsRes, ShopItemEntity, ShopProductCategory, StandartShopRes, UpdateOneProductsRes } from 'types';
+import { fetchDELETE, fetchGET, fetchPHOTO, fetchPOST, fetchPUT } from '../../utils/fethMetod';
 import { SpinerCandle } from '../common/Spiner/SpinerCandle';
+import ImageUploading, { ImageListType } from 'react-images-uploading';
+import { apiUrl } from '../../config/api';
 
+let imageIsEdit = false;
 export const ProductPageEdit = () => {
     const location = useLocation();
     const [product, setProduct] = useState<ShopItemEntity>({
@@ -22,6 +25,7 @@ export const ProductPageEdit = () => {
     });
     const [infoMessage, setInfoMessage] =  useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+    const [images, setImages] = useState<any>([]);
 
     const textRowCountSD = product.shortDescription ? product.shortDescription.split("\n").length : 0
     const textRowCountLD = product.description ? product.description.split("\n").length : 0
@@ -33,40 +37,58 @@ export const ProductPageEdit = () => {
         }));
     };
 
+    const onChangeImage = (
+        imageList: ImageListType,
+        addUpdateIndex: number[] | undefined
+    ) => {
+        setImages(imageList as never[]);
+        imageIsEdit = true;
+    };
+
     const saveToNewItem = async () => {
+        console.log('zapisz nowy produkt');
         try {
             setLoading(true);
             const data: CreateNewProductsRes = await fetchPOST(`/shop`, product);
 
+            console.log("data", data);
             if ((data as any).message === 'Unauthorized') {
                 setInfoMessage("Nie jesteś zalogowany lub nie masz uprawnień");
-                setTimeout( () => {
-                    setInfoMessage('');
-                }, 5000);
             }
 
-            if ((data as ShopItemEntity).id !== undefined ) {
-                setInfoMessage("Dodano nowy przedmiot");
-                setTimeout( () => {
-                    setInfoMessage('');
-                }, 5000);
-            }
-    
-            if ((data as any).isSucces !== undefined) { 
-                if ((data as any).isSucces === false) {
-                    setInfoMessage((data as any).message);
-                    setTimeout( () => {
-                        setInfoMessage('');
-                    }, 5000);
+            if (data.isSucces) {
+                console.log("data sukces", images);
+                console.log("data id", data.id);
+
+                if (images.length){
+                    console.log('Wykryto obrazek');
+                    const formData = new FormData();
+                    formData.append("id", data.id);
+                    formData.append("photo", images[0].file);
+                    const dataFn: StandartShopRes = await fetchPHOTO('/shop/photo', formData);
+
+                    if (dataFn.isSucces) {
+                        setInfoMessage("Dodano nowy przedmiot ze zdjęciem");
+                    } else {
+                        if(dataFn.message !== undefined) {
+                            setInfoMessage(dataFn.message);
+                        }
+                    }
+                } else {
+                    setInfoMessage("Dodano nowy przedmiot");
                 }
+            }
+
+            if (data.isSucces === false) {
+                setInfoMessage((data as any).message);
             }
         } catch (err) {
             setInfoMessage(`Coś poszło nie tak... (E11)`);
+        } finally {
+            setLoading(false);
             setTimeout( () => {
                 setInfoMessage('');
             }, 5000);
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -77,27 +99,33 @@ export const ProductPageEdit = () => {
 
             if ((data as any).message === 'Unauthorized') {
                 setInfoMessage("Nie jesteś zalogowany lub nie masz uprawnień");
-                setTimeout( () => {
-                    setInfoMessage('');
-                }, 5000);
             } else if (data.isSucces) {
-                setInfoMessage("Zmiana zapisana prawidłowo");
-                setTimeout( () => {
-                    setInfoMessage('');
-                }, 5000);
+                if(imageIsEdit) {
+                    const formData = new FormData();
+                    formData.append("id", product.id);
+                    formData.append("photo", images[0].file);
+                    const dataFn: StandartShopRes = await fetchPHOTO('/shop/photo', formData);
+
+                    if (dataFn.isSucces) {
+                        setInfoMessage("Zmiana danych i fotografii: zapisana prawidłowo");
+                    } else {
+                        if(dataFn.message !== undefined){
+                            setInfoMessage(dataFn.message);
+                        }
+                    }
+                } else {
+                    setInfoMessage("Zmiana zapisana prawidłowo");
+                }
             } else {
                 setInfoMessage("Coś poszło nie tak... (E21)");
-                setTimeout( () => {
-                    setInfoMessage('');
-                }, 5000);
             }
         } catch (err) {
             setInfoMessage("Coś poszło nie tak... (E22)");
+        } finally {
+            setLoading(false);
             setTimeout( () => {
                 setInfoMessage('');
             }, 5000);
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -109,26 +137,20 @@ export const ProductPageEdit = () => {
             const data: DelOneProductsRes = await fetchDELETE(`/shop/${location.state}`);
             if (data.isSucces) {
                 setInfoMessage(`${product.productName} został trwale usunięty`);
-                setTimeout( () => {
-                    setInfoMessage('');
-                }, 5000);
             } else {
                 if (data.message) {
                     setInfoMessage(data.message);
                 } else {
                     setInfoMessage("Coś poszło nie tak... (E31)");
                 }
-                setTimeout( () => {
-                    setInfoMessage('');
-                }, 10000);
             }
         } else {
             setInfoMessage("Coś poszło nie tak... (E32)");
-            setTimeout( () => {
-                setInfoMessage('');
-            }, 10000);
         }
         setLoading(false);
+        setTimeout( () => {
+            setInfoMessage('');
+        }, 5000);
     }
 
     useEffect( () => {
@@ -163,7 +185,48 @@ export const ProductPageEdit = () => {
         />
 
         <div className="Product_cart">
-            <div className="Product__img" />
+            <div className="Product__img">
+                <ImageUploading
+                    multiple
+                    value={images}
+                    onChange={onChangeImage}
+                    maxNumber={1}
+                >
+                    {({
+                        imageList,
+                        onImageUpload,
+                        onImageUpdate,
+                        onImageRemove,
+                        isDragging,
+                        dragProps
+                    }) => (
+                    <div className="upload__image-wrapper">
+                        {
+                            imageList.length === 0 
+                            ?   <button
+                                    className="upload__image-button"
+                                    style={isDragging ? { color: "red" } : undefined}
+                                    onClick={onImageUpload}
+                                    {...dragProps}
+                                >
+                                    Kliknij lub upuść zdjęcie
+                                </button>
+                            : null
+                        }
+                        &nbsp;
+                        {imageList.map((image, index) => (
+                        <div key={index} className="image-item">
+                            <img src={image.dataURL} alt="" width="100%" />
+                            <div className="image-item__btn-wrapper">
+                                <button onClick={() => onImageUpdate(index)}>Podmień</button>
+                                <button onClick={() => onImageRemove(index)}>Usuń</button>
+                            </div>
+                        </div>
+                        ))}
+                    </div>
+                    )}
+                </ImageUploading>
+            </div>  
 
             <div className="Product__short-description">
                 <div className="Product__promotion">
