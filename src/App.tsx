@@ -73,6 +73,7 @@ export const App = () => {
                         <Route path="*" element={<NotFoundView />} />
                     </Routes>
                 </div>
+                <div style={{ flexGrow: '1'}}></div>
                 <Footer />
             </LoginContext.Provider>
         </div>

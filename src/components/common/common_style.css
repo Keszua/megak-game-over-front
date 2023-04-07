@@ -5,3 +5,8 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
+.Flex_column {
+    display: flex;
+    flex-direction: column;
+}
