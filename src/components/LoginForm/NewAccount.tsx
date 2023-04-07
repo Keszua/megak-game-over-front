@@ -3,6 +3,7 @@ import "./LoginForm.css";
 import { UserRegisterEntity, UserRegisterResponse } from 'types';
 import { fetchPOST } from "../../utils/fethMetod";
 import { NavLink } from "react-router-dom";
+import { SpinerCandle } from "../common/Spiner/SpinerCandle";
 
 export const NewAccount = () => {
     const [form, setForm] = useState<UserRegisterEntity>({
@@ -12,6 +13,7 @@ export const NewAccount = () => {
     });
     const [errorMessages, setErrorMessages] = useState<string>('');
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const updateForm = (key: string, value: any) => {
         setForm( form => ({
@@ -24,7 +26,7 @@ export const NewAccount = () => {
         event.preventDefault();
 
         try {
-            //TODO dodać loader
+            setLoading(true);
             const data: UserRegisterResponse = await fetchPOST(`/user/register`, { ...form });
             
             if (data.isSucces) {
@@ -37,7 +39,7 @@ export const NewAccount = () => {
             setIsSubmitted(false);
             setErrorMessages('Coś poszło nie tak');
         } finally {
-            //TODO wyłączyć loader
+            setLoading(false);
         }
     };
 
@@ -105,6 +107,7 @@ export const NewAccount = () => {
 
     return (
         <div className="login-view">
+            {loading && <SpinerCandle />}
             {isSubmitted ? renderLoginSuccessful : renderForm}
         </div>
     );

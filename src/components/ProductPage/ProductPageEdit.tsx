@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
 import { CreateNewProductsRes, DelOneProductsRes, ShopItemEntity, ShopProductCategory, UpdateOneProductsRes } from 'types';
 import { fetchDELETE, fetchGET, fetchPOST, fetchPUT } from '../../utils/fethMetod';
+import { SpinerCandle } from '../common/Spiner/SpinerCandle';
 
 export const ProductPageEdit = () => {
     const location = useLocation();
@@ -20,6 +21,7 @@ export const ProductPageEdit = () => {
         category: ShopProductCategory.PRODUCT,
     });
     const [infoMessage, setInfoMessage] =  useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const textRowCountSD = product.shortDescription ? product.shortDescription.split("\n").length : 0
     const textRowCountLD = product.description ? product.description.split("\n").length : 0
@@ -33,6 +35,7 @@ export const ProductPageEdit = () => {
 
     const saveToNewItem = async () => {
         try {
+            setLoading(true);
             const data: CreateNewProductsRes = await fetchPOST(`/shop`, product);
 
             if ((data as any).message === 'Unauthorized') {
@@ -62,11 +65,14 @@ export const ProductPageEdit = () => {
             setTimeout( () => {
                 setInfoMessage('');
             }, 5000);
+        } finally {
+            setLoading(false);
         }
     }
 
     const saveChanges = async () => {
         try {
+            setLoading(true);
             const data: UpdateOneProductsRes = await fetchPUT(`/shop`, product);
 
             if ((data as any).message === 'Unauthorized') {
@@ -90,6 +96,8 @@ export const ProductPageEdit = () => {
             setTimeout( () => {
                 setInfoMessage('');
             }, 5000);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -97,6 +105,7 @@ export const ProductPageEdit = () => {
         const youShure =  window.confirm(`Czy jesteś pewien, \n że chcesz trwale usunąć ${product.productName}? `);
 
         if (youShure) {
+            setLoading(true);
             const data: DelOneProductsRes = await fetchDELETE(`/shop/${location.state}`);
             if (data.isSucces) {
                 setInfoMessage(`${product.productName} został trwale usunięty`);
@@ -119,15 +128,19 @@ export const ProductPageEdit = () => {
                 setInfoMessage('');
             }, 10000);
         }
+        setLoading(false);
     }
 
     useEffect( () => {
         (async () => {
             try {
+                setLoading(true);
                 const data: ShopItemEntity = await fetchGET(`/shop/${location.state}`);
                 setProduct(data);
             } catch(e) {
                 <h3>Wygląda na to, że produkt nie istnieje...</h3>;
+            } finally {
+                setLoading(false);
             }
         })();
     }, []);
@@ -139,7 +152,7 @@ export const ProductPageEdit = () => {
     }
 
     return <div className="Product_container">
-
+        {loading && <SpinerCandle />}
         <div className="Product_info_message">{infoMessage}</div> 
 
         <input className='ProductEdit_input product_name'

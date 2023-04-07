@@ -5,6 +5,7 @@ import { fetchGET, fetchPOST } from "../../utils/fethMetod";
 import { NavLink } from "react-router-dom";
 import { useContext } from 'react'
 import { LoginContext } from '../contexts/login.context'
+import { SpinerCandle } from "../common/Spiner/SpinerCandle";
 
 export const LoginForm = () => {
     const context = useContext(LoginContext);
@@ -12,10 +13,11 @@ export const LoginForm = () => {
         email: '',
         password: '',
     });
+    const [loading, setLoading] = useState<boolean>(false);
     const [errorMessages, setErrorMessages] = useState<string>('');
     const [textAccount, setTextAccount] = useState<string>('nagrobka');
     const [textAccountButton, setTextAccountButton] = useState<string>('Załóż nowe konto');
-    const [textLoging, setTextLoging] = useState<string>('zakopany');
+    const [textLoging, setTextLoging] = useState<string>('zalogowany');
     const [textLogout, setTextLogout] = useState<string>('Wyloguj');
 
     const updateForm = (key: string, value: any) => {
@@ -29,14 +31,14 @@ export const LoginForm = () => {
         event.preventDefault();
 
         try {
-            //TODO dodać loader
+            setLoading(true);
             const data: AuthLoginResponse = await fetchPOST(`/auth/login`, { ...form });
             
             if (data.isSucces) {
                 context.setIsLoged(true);
                 context.setLogin(data.login);
                 context.setRole(data.role);
-                setTimeout( () => setTextLoging('zalogowany'), 4000);
+                setTextLoging('zakopany');
                 context.setIsLoged(true);
                 context.setLogin(data.login);
             } else {
@@ -49,7 +51,8 @@ export const LoginForm = () => {
             setErrorMessages('Coś poszło nie tak');
             context.setLogin('');
         } finally {
-            //TODO wyłączyć loader
+            setLoading(false);
+            setTimeout( () => setTextLoging('zalogowany'), 4000);
         }
     };
 
@@ -63,9 +66,11 @@ export const LoginForm = () => {
             context.setIsLoged(false);
             context.setRole(UserPermissions.USER);
             context.setLogin('Zaloguj');
+            setTextLogout("Wyloguj");
         }
     }
 
+    //TODO - coś nie tak z trzymaniem sesji...
     // useEffect( () => {
     //     (async () => {
     //         try {
@@ -88,6 +93,7 @@ export const LoginForm = () => {
 
     const renderForm = ( 
         <>
+            {loading && <SpinerCandle />}
             <div className="login-tombstone">
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>

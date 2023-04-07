@@ -4,6 +4,7 @@ import './ProductPage.css'
 import { ShopItemEntity, ShopProductCategory, UserPermissions } from 'types';
 import { fetchGET } from '../../utils/fethMetod';
 import { LoginContext } from '../contexts/login.context';
+import { SpinerCandle } from '../common/Spiner/SpinerCandle';
 
 export const ProductPage = () => {
     const context = useContext(LoginContext);
@@ -22,6 +23,7 @@ export const ProductPage = () => {
         category: ShopProductCategory.PRODUCT,
     });
     const [count, setCount] = useState<number>(1);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const textRowCountSD = product.shortDescription ? product.shortDescription.split("\n").length : 0
     const textRowCountLD = product.description ? product.description.split("\n").length : 0
@@ -29,10 +31,13 @@ export const ProductPage = () => {
     useEffect( () => {
         (async () => {
             try {
+                setLoading(true);
                 const data: ShopItemEntity = await fetchGET(`/shop/${location.state}`);
                 setProduct(data);
             } catch(e) {
-                <h3>Wygląda nato, że produkt nie istnieje...</h3>;
+                <h3>Wygląda na to, że produkt nie istnieje...</h3>;
+            } finally {
+                setLoading(false);
             }
         })();
     }, []);
@@ -44,6 +49,7 @@ export const ProductPage = () => {
     }
 
     return <div className="Product_container">
+        {loading && <SpinerCandle />}
         <h1>{product?.productName}</h1>
 
         <div className="Product_cart">
@@ -80,7 +86,6 @@ export const ProductPage = () => {
                 </label>
 
                 <button className='button_style'>Do koszyka</button>
-                
                 { 
                     context.role ===  UserPermissions.ADMIN 
                     ?   <NavLink to="/product-edit" state={location.state} className='button_style' >
