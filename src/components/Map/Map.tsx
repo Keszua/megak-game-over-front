@@ -11,7 +11,7 @@ export const Map = (props: Props) => {
     const { position } = props;
 
     return (
-        <div className="map">
+        <div className="Map">
             <MapContainer center={position} zoom={15} scrollWheelZoom={true}> 
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"           

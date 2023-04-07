@@ -1,6 +1,7 @@
-.map {
+.Map {
     height: 500px;
     width: 700px;
+    margin-top: 50px;
 }
 
 .leaflet-container {
