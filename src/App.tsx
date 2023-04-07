@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';import './App.css';
 import { Header } from './components/Header/Header';
 import { Menu } from './components/Menu/Menu';
-//import { Content } from './components/Content/Content';
 import { Footer } from './components/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import { BasketView } from './views/BasketView';
@@ -24,7 +23,7 @@ export const App = () => {
     const [login, setLogin] = useState<string>('Zaloguj');
     const [role, setRole] = useState<UserPermissions>(UserPermissions.USER);
     
-
+    //TODO COś jest nie tak z trzymaniem sesji
     // useEffect( () => {
     //     (async () => {
     //         try {
@@ -58,7 +57,6 @@ export const App = () => {
                 <Header />
                 <div className='body'>
                     <Menu />
-                    {/* <Content /> */}
                     <Routes >
                         <Route path="/" element={<HomeView />} />
                         <Route path="/basket" element={<BasketView />} />
