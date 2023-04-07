@@ -2,6 +2,12 @@
   --iconColor: #581764;
 }
 
+#root {
+    display: block;
+    background: #101010;
+    text-align: -moz-center;
+}
+
 .App {
   display: flex;
   flex-direction: column;
