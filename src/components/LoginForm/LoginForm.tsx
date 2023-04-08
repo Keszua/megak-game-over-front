@@ -41,6 +41,7 @@ export const LoginForm = () => {
                 setTextLoging('zakopany');
                 context.setIsLoged(true);
                 context.setLogin(data.login);
+                context.setUserId(data.id);
             } else {
                 context.setIsLoged(false);
                 setErrorMessages('Nieporawne dane');
@@ -50,6 +51,7 @@ export const LoginForm = () => {
             context.setIsLoged(false);
             setErrorMessages('Coś poszło nie tak');
             context.setLogin('');
+            context.setUserId('');
         } finally {
             setLoading(false);
             setTimeout( () => setTextLoging('zalogowany'), 4000);
@@ -67,6 +69,7 @@ export const LoginForm = () => {
             context.setRole(UserPermissions.USER);
             context.setLogin('Zaloguj');
             setTextLogout("Wyloguj");
+            context.setUserId('');
         }
     }
 

@@ -21,8 +21,10 @@ import { fetchGET } from './utils/fethMetod';
 export const App = () => {
     const [isLoged, setIsLoged] = useState<boolean>(false);
     const [login, setLogin] = useState<string>('Zaloguj');
+    const [userId, setUserId] = useState<string>('');
     const [role, setRole] = useState<UserPermissions>(UserPermissions.USER);
-    
+    const [basketNoEmpty, setBasketNoEmpty] = useState<boolean>(false);
+
     //TODO COś jest nie tak z trzymaniem sesji
     // useEffect( () => {
     //     (async () => {
@@ -51,8 +53,12 @@ export const App = () => {
                 setIsLoged,
                 login,
                 setLogin,
+                userId,
+                setUserId,
                 role,
                 setRole,
+                basketNoEmpty,
+                setBasketNoEmpty,
             }}>
                 <Header />
                 <div className='body'>
