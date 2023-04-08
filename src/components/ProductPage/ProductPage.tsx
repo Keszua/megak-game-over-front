@@ -44,9 +44,9 @@ export const ProductPage = () => {
         const itemToBasket: AddItemEntity = {
             userId: context.userId,
             productId: product.id,
-            count,
+            count: Number(count),
         };
-        console.log('itemToBasket', itemToBasket);
+
         try {
             setLoading(true);
             const data: AddProductToBasketRes = await fetchPOST(`/basket`, itemToBasket);
@@ -54,9 +54,9 @@ export const ProductPage = () => {
             console.log("zwrotka", data);
             if (data.isSuccess) {
                 setInfoMessage('Dodano produktu do koszyka.');
-                context.setBasketNoEmpty(true);
+                context.setBasketNoEmpty(true); 
             } else {
-                setInfoMessage('Nie udało się dodać produktu do koszyka! (E11)');
+                setInfoMessage(data.message);
             }
         } catch (err) {
             setInfoMessage('Nie udało się dodać produktu do koszyka! (E12)');
