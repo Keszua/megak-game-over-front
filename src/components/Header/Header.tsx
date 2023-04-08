@@ -26,7 +26,7 @@ export const Header = () => {
                 </div>
             </NavLink>
             <NavLink to='/basket' className="control basket">
-                <IconBasket isItems={false} />
+                <IconBasket isItems={context.basketNoEmpty} />
                 <div className='description'>
                     Koszyk
                 </div>

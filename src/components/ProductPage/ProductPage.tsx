@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'
 import './ProductPage.css'
-import { ShopItemEntity, ShopProductCategory, UserPermissions } from 'types';
-import { fetchGET } from '../../utils/fethMetod';
+import { AddItemEntity, AddProductToBasketRes, ShopItemEntity, ShopProductCategory, UserPermissions } from 'types';
+import { fetchGET, fetchPOST } from '../../utils/fethMetod';
 import { LoginContext } from '../contexts/login.context';
 import { SpinerCandle } from '../common/Spiner/SpinerCandle';
 import { apiUrl } from '../../config/api';
@@ -25,9 +25,48 @@ export const ProductPage = () => {
     });
     const [count, setCount] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
+    const [infoMessage, setInfoMessage] =  useState<string>('');
 
     const textRowCountSD = product.shortDescription ? product.shortDescription.split("\n").length : 0
     const textRowCountLD = product.description ? product.description.split("\n").length : 0
+
+    const handlerAddToBasket = async () => {
+        console.log("Dodaj do koszyka");
+
+        if (context.isLoged === false) {
+            setInfoMessage('Nie jesteś zalogowany!');
+            setTimeout( () => {
+                setInfoMessage('');
+            }, 5000)
+            return;
+        }
+
+        const itemToBasket: AddItemEntity = {
+            userId: context.userId,
+            productId: product.id,
+            count,
+        };
+        console.log('itemToBasket', itemToBasket);
+        try {
+            setLoading(true);
+            const data: AddProductToBasketRes = await fetchPOST(`/basket`, itemToBasket);
+
+            console.log("zwrotka", data);
+            if (data.isSuccess) {
+                setInfoMessage('Dodano produktu do koszyka.');
+                context.setBasketNoEmpty(true);
+            } else {
+                setInfoMessage('Nie udało się dodać produktu do koszyka! (E11)');
+            }
+        } catch (err) {
+            setInfoMessage('Nie udało się dodać produktu do koszyka! (E12)');
+        } finally {
+            setLoading(false);
+            setTimeout( () => {
+                setInfoMessage('');
+            }, 5000)
+        }
+    }
 
     useEffect( () => {
         (async () => {
@@ -51,6 +90,8 @@ export const ProductPage = () => {
 
     return <div className="Product_container">
         {loading && <SpinerCandle />}
+        <div className="Product_info_message">{infoMessage}</div> 
+
         <h1>{product?.productName}</h1>
 
         <div className="Product_cart">
@@ -88,7 +129,11 @@ export const ProductPage = () => {
                     />
                 </label>
 
-                <button className='button_style'>Do koszyka</button>
+                <button className='button_style'
+                    onClick={handlerAddToBasket}
+                >
+                    Dodaj do koszyka
+                </button>
                 { 
                     context.role ===  UserPermissions.ADMIN 
                     ?   <NavLink to="/product-edit" state={location.state} className='button_style' >
