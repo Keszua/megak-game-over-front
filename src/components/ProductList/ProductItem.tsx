@@ -1,4 +1,3 @@
-//import { useState } from 'react';
 import './ProductList.css'
 import { ShortShopItemEntity } from 'types';
 import { NavLink } from 'react-router-dom';
