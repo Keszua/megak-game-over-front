@@ -11,7 +11,7 @@ export const BasketList = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     const handlerBuyItems =  async () => {
-        //await fetchDELETE(`/basket/all/${context.userId}`);        
+        await fetchDELETE(`/basket/all/${context.userId}`);        
         window.alert(`Dziękujemy za zakupy.\n Jesteśmy dozgonnie wdzięczni za korzystanie z naszyh usług`);
     }
 
@@ -21,7 +21,12 @@ export const BasketList = () => {
                 try {
                     setLoading(true);
                         const data: ListProductFromBasketRes = await fetchGET(`/basket/${context.userId}`);
-                        setProductList(data);
+                        if (data[0].id !== undefined) {
+                            setProductList(data);
+                        }
+                        if ((data as any).message === 'Unauthorized') {
+                            console.log("Nie jesteś zalogowany lub nie masz uprawnień");
+                        }
                 } catch(e) {
                     <h3>Coś poszło nie tak</h3>;
                 } finally {
@@ -43,10 +48,12 @@ export const BasketList = () => {
                 <BasketItem key={ product.id} product={product} />
             ))
         }
-        <button className='button_style'
-            onClick={handlerBuyItems}
-        >
-            Kup
-        </button>
+        {
+            productList.length > 0
+            ?   <button className='button_style' onClick={handlerBuyItems}>
+                    Kup
+                </button>
+            : null
+        }
     </>
 }
