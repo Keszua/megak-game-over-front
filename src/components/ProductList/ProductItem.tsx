@@ -2,12 +2,15 @@
 import './ProductList.css'
 import { ShortShopItemEntity } from 'types';
 import { NavLink } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
 
 export const ProductItem = (props: ShortShopItemEntity) => {
     const { id, productName, shortDescription, price, quantity, quantityInfinity, isPromotion} = props;
 
     return <NavLink to="/product-item" state={id} className="ProductItem__container">
-        <div className="ProductItem__img" />
+        <div className="ProductItem__img" >
+            <img src={`${apiUrl}/shop/photo/${id}`} alt="" />
+        </div>
         <div className="ProductItem__text">
             <div className="productName" >{productName}</div> 
             <div className="ProductItem_description">
