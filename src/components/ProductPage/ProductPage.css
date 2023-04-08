@@ -16,20 +16,27 @@
 .Product_cart{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     height: auto;
+    justify-content: center;
 }
 
 .Product__img {
-    min-width: 300px;
-    max-width: 500px;
+    min-width: 200px;
+    max-width: 400px;
 
-    min-height: 300px;
+    min-height: 200px;
     max-height: 500px;
 
     margin: 4px;
 
     border: 1px solid var(--iconColor);
+}
+
+.Product__img img{
+    width: 100%;
+    height: auto;
 }
 
 .upload__image-wrapper {
