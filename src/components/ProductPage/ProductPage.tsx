@@ -5,6 +5,7 @@ import { ShopItemEntity, ShopProductCategory, UserPermissions } from 'types';
 import { fetchGET } from '../../utils/fethMetod';
 import { LoginContext } from '../contexts/login.context';
 import { SpinerCandle } from '../common/Spiner/SpinerCandle';
+import { apiUrl } from '../../config/api';
 
 export const ProductPage = () => {
     const context = useContext(LoginContext);
@@ -53,7 +54,9 @@ export const ProductPage = () => {
         <h1>{product?.productName}</h1>
 
         <div className="Product_cart">
-            <div className="Product__img" />
+            <div className="Product__img" >
+                <img src={`${apiUrl}/shop/photo/${location.state}`} alt="" />
+            </div>
 
             <div className="Product__short-description">
                 <div className={`Product__promotion ${ product.isPromotion ? 'Product__promotion_active' : 'Product__promotion_no_active'}` } >

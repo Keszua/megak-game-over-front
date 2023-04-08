@@ -46,22 +46,16 @@ export const ProductPageEdit = () => {
     };
 
     const saveToNewItem = async () => {
-        console.log('zapisz nowy produkt');
         try {
             setLoading(true);
             const data: CreateNewProductsRes = await fetchPOST(`/shop`, product);
 
-            console.log("data", data);
             if ((data as any).message === 'Unauthorized') {
                 setInfoMessage("Nie jesteś zalogowany lub nie masz uprawnień");
             }
 
             if (data.isSucces) {
-                console.log("data sukces", images);
-                console.log("data id", data.id);
-
                 if (images.length){
-                    console.log('Wykryto obrazek');
                     const formData = new FormData();
                     formData.append("id", data.id);
                     formData.append("photo", images[0].file);
@@ -200,30 +194,31 @@ export const ProductPageEdit = () => {
                         isDragging,
                         dragProps
                     }) => (
-                    <div className="upload__image-wrapper">
-                        {
-                            imageList.length === 0 
-                            ?   <button
-                                    className="upload__image-button"
-                                    style={isDragging ? { color: "red" } : undefined}
-                                    onClick={onImageUpload}
-                                    {...dragProps}
-                                >
-                                    Kliknij lub upuść zdjęcie
-                                </button>
-                            : null
-                        }
-                        &nbsp;
-                        {imageList.map((image, index) => (
-                        <div key={index} className="image-item">
-                            <img src={image.dataURL} alt="" width="100%" />
-                            <div className="image-item__btn-wrapper">
-                                <button onClick={() => onImageUpdate(index)}>Podmień</button>
-                                <button onClick={() => onImageRemove(index)}>Usuń</button>
+                        <div className="upload__image-wrapper">
+                            {
+                                imageList.length === 0 
+                                ?   <button
+                                        className="upload__image-button"
+                                        style={isDragging ? { color: "red" } : undefined}
+                                        onClick={onImageUpload}
+                                        {...dragProps}
+                                    >
+                                        Kliknij lub upuść zdjęcie
+                                    </button>
+                                : null
+                            }
+                            &nbsp;
+                            {imageList.map((image, index) => (
+                            <div key={index} className="image-item">
+                                <img src={image.dataURL} alt="" width="100%" />
+                                {/* <img src={`${apiUrl}/shop/photo/${location.state}`} alt="" /> */}
+                                <div className="image-item__btn-wrapper">
+                                    <button onClick={() => onImageUpdate(index)}>Podmień</button>
+                                    <button onClick={() => onImageRemove(index)}>Usuń</button>
+                                </div>
                             </div>
+                            ))}
                         </div>
-                        ))}
-                    </div>
                     )}
                 </ImageUploading>
             </div>  
