@@ -25,26 +25,26 @@ export const App = () => {
     const [role, setRole] = useState<UserPermissions>(UserPermissions.USER);
     const [basketNoEmpty, setBasketNoEmpty] = useState<boolean>(false);
 
-    //TODO COś jest nie tak z trzymaniem sesji
-    // useEffect( () => {
-    //     (async () => {
-    //         try {
-    //             const data: AuthLoginResponse = await fetchGET(`/auth/islogged`);
+    useEffect( () => {
+        (async () => {
+            try {
+                const data: AuthLoginResponse = await fetchGET(`/auth/islogged`);
 
-    //             console.log(data);
-    //             if (data.isSucces) {
-    //                 setIsLoged(true);
-    //                 setLogin(data.login);
-    //             } else {
-    //                 setIsLoged(false);
-    //                 setLogin('Zaloguj');
-    //             }
-    //         } catch(e) {
-    //             setIsLoged(false);
-    //             setLogin('Zaloguj');
-    //         }
-    //     })();
-    // }, []);
+                if (data.isSucces) {
+                    setIsLoged(true);
+                    setLogin(data.login);
+                    setUserId(data.id);
+                    setRole(data.role);
+                } else {
+                    setIsLoged(false);
+                    setLogin('Zaloguj');
+                }
+            } catch(e) {
+                setIsLoged(false);
+                setLogin('Zaloguj');
+            }
+        })();
+    }, []);
         
     return (
         <div className="App">

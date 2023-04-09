@@ -3,9 +3,7 @@ import { apiUrl } from "../config/api";
 export const fetchGET = async (path: string): Promise<any> => {
     const res = await fetch(`${apiUrl}${path}`, {
         method: 'GET',
-        headers: {
-            //credentials: 'include',
-        },
+        credentials: 'include',
     });
 
     return await res.json();
@@ -14,6 +12,7 @@ export const fetchGET = async (path: string): Promise<any> => {
 export const fetchPOST = async (path: string, obj: any): Promise<any> => {
     const res = await fetch(`${apiUrl}${path}`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -26,6 +25,7 @@ export const fetchPOST = async (path: string, obj: any): Promise<any> => {
 export const fetchPUT = async (path: string, obj: any): Promise<any> => {
     const res = await fetch(`${apiUrl}${path}`, {
         method: 'PUT',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -38,10 +38,7 @@ export const fetchPUT = async (path: string, obj: any): Promise<any> => {
 export const fetchDELETE = async (path: string ): Promise<any> => {
     const res = await fetch(`${apiUrl}${path}`, {
         method: 'DELETE',
-        // headers: {
-        //     'Content-Type': 'application/json',
-        // },
-        // body: JSON.stringify(obj)
+        credentials: 'include',
     });
 
     return await res.json();
@@ -49,8 +46,8 @@ export const fetchDELETE = async (path: string ): Promise<any> => {
 
 export const fetchPHOTO = async (path: string, formData: FormData ): Promise<any> => {
     const res = await fetch(`${apiUrl}${path}`, {
-                method: 'POST',
-                body: formData
+        method: 'POST',
+        body: formData
     });
 
     return await res.json();

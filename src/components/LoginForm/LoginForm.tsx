@@ -73,27 +73,6 @@ export const LoginForm = () => {
         }
     }
 
-    //TODO - coś nie tak z trzymaniem sesji...
-    // useEffect( () => {
-    //     (async () => {
-    //         try {
-    //             const data: AuthLoginResponse = await fetchGET(`/auth/islogged`);
-
-    //             console.log('useEfect', data);
-    //             if (data.isSucces) {
-    //                 context.setIsLoged(true);
-    //                 context.setLogin(data.login);
-    //             } else {
-    //                 context.setIsLoged(false);
-    //                 context.setLogin('Zaloguj');
-    //             }
-    //         } catch(e) {
-    //             context.setIsLoged(false);
-    //             context.setLogin('Zaloguj');
-    //         }
-    //     })();
-    // }, []);
-
     const renderForm = ( 
         <>
             {loading && <SpinerCandle />}
