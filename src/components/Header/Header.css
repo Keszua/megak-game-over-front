@@ -1,0 +1,67 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    justify-content: center;
+
+    width: auto;
+    z-index: 101;
+
+    background: rgba(16, 16, 16, 0.7);
+}
+
+.Header .logo {
+    min-width: 250px;
+    align-self: baseline;
+}
+
+.Header .search {
+    width: 200px;
+    flex-grow: 1;
+    border: 2px solid var(--iconColor);
+    border-radius: 16px;
+    padding: 0.2em 16px;
+    font-size: 0.8em;
+}
+
+.Header .controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    min-width: 250px;
+}
+
+
+
+.Header .controls .control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0px;
+    font-size: 0.5em;
+    padding: 3px;
+
+    text-decoration: none;
+}
+
+.Header .controls .description {
+    min-width: 40px;
+    margin: 4px;
+}
+
+.Header .controls .contact {
+    min-width: 0px;
+}
+
+.Header .controls .basket {
+    min-width: 0px;
+}
+
+.Header .controls .login {
+    min-width: 0px;
+}

@@ -1,0 +1,17 @@
+.Menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Menu_element {
+    border-radius: 14px;
+    padding: 0.3em 16px;
+    text-decoration: none;
+}
+
+.Menu_element:hover {
+    box-shadow: inset 0px -9px 3px 1px rgba(255, 255, 0, 0.6);
+}

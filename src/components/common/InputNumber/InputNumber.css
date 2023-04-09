@@ -1,0 +1,42 @@
+
+.Input_number 
+input[type="number"] {
+    -webkit-appearance: textfield !important;
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+}
+
+.Input_number 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.Input_number {
+    display: flex;
+    border-radius: 5px;
+    font-size: 1.0em;
+}
+
+.Input_number div {
+    margin: 8px;
+}
+
+.plusminus {
+    width: 30%;
+    border: none;
+    color: #f5e;
+}
+
+.plus {
+    border-radius: 10px 0px 0px 10px;
+}
+  
+.minus {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.num {
+    width: 40%;
+    border: none;
+}
