@@ -137,7 +137,7 @@ Po prawidłowym zalogowaniu się, zmienia sie ikona w prawym górnym rogu.
 
 ### Widok produktu lub usługi
 
-Zalogownay urzytkownik ma mozliwość dodania produktu lub usługi do koszyka.
+Zalogownay użytkownik ma mozliwość dodania produktu lub usługi do koszyka.
 
 Administrator ma możliwość edytowania produktu.
 
@@ -153,7 +153,7 @@ Administrator ma możliwość edytowania produktu.
 
 ### Widok koszyka
 
-Po dodaniu produktu lub usługi do koszyka, zmienia sie ikona koszyka.
+Po dodaniu produktu lub usługi do koszyka, zmienia się ikona koszyka.
 
 <p align="center">
   <img src="./printscreen/Scren09.png" alt="github" width="612" /> 
@@ -163,7 +163,7 @@ Po dodaniu produktu lub usługi do koszyka, zmienia sie ikona koszyka.
 
 Miejscowość prawdziwa.
 
-Ulica wymyslona.
+Ulica wymyślona.
 
 <p align="center">
   <img src="./printscreen/Scren10.png" alt="github" width="612" /> 

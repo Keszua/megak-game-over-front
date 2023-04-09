@@ -12,7 +12,7 @@ export const HomeView = () => (
             Honorujemy Kartę Dużej Rodziny.
         </p>
         <p>
-            W pakiecie przemium: odnowa blogiczna.
+            W pakiecie premium: odnowa biologiczna.
         </p>
         <p>
             Tylko u nas: płyta grobowa z solarem i dostęp do internetu.

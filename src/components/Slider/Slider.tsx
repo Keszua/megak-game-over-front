@@ -48,7 +48,7 @@ export const Slider = () => {
                     Pakiet EKO
                 </div>
                 <div className="text" >
-                    Gwarantujemy najnizsze ceny (gdy sam wykopiesz sobie grób).
+                    Gwarantujemy najniższe ceny (gdy sam wykopiesz sobie grób).
                 </div>
             </div>
         </SwiperSlide>
