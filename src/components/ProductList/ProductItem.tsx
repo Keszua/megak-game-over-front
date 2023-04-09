@@ -22,7 +22,7 @@ export const ProductItem = (props: ShortShopItemEntity) => {
             }
             <div className="ProductItem__info-price">
                 <div>Cena</div>
-                <div>{Number(price)}</div>
+                <div>{Number(price).toFixed(2)}</div>
             </div>
             {
                 quantityInfinity

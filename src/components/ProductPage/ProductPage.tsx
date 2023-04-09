@@ -113,7 +113,7 @@ export const ProductPage = () => {
 
                 <div className="Product__price">
                     <div style={{fontSize:"0.8em"}}>Cena: </div>
-                    <strong style={{margin:"5px"}}>{Number(product?.price)}</strong>
+                    <strong style={{margin:"5px"}}>{(product?.price).toFixed(2)}</strong>
                     <div style={{fontSize:"0.5em"}}>zł</div>
                 </div>
                 (Suma: {(Number(product?.price) * count).toFixed(2)} zł )

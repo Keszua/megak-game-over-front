@@ -59,6 +59,7 @@
     flex-grow: 1;
     justify-content: space-around;
     align-items: center;
+    max-width: 650px;
 }
 
 .short-description {
