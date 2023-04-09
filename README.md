@@ -8,6 +8,7 @@
 Projekt na zaliczenie drugiej edycji [Mega Kursu JavaScriptu MegaK](https://www.megak.pl)
 
 To jest **front end** napisany w ***React***
+
 Do prawidłowego działania, wymagany jest **back end** dostępny pod [tym adresem](https://github.com/Keszua/megak-game-over-back/)
 
 
@@ -15,12 +16,27 @@ Do prawidłowego działania, wymagany jest **back end** dostępny pod [tym adres
 
 ## Opis projektu
 Przykład strony dla zakładu usługowego.
-- projekt wyglądu 
-- slidery
-- routing
-- rejstracja, logowanie
+- projekt wyglądu (logo, ikony, stylowanie)
+- slidery (przykładowy wygląd)
+- przykład listy produktów (pobieranych z bazy danych)
+- karta produktu (dane pobierane z bazy)
+- karta edycji produktu (zmiany zapisywane do bazy danych)
+- przykład karty "konatakt" z mapą
+- rejstracja, logowanie (autoryzacja i autentykacja po stronie serwera)
+- urzycie aktualnych technologii oraz trendów:
+    - React Hooks
+    - React Context
+    - React Routing
+    - pobieranie danych za pomocą Fetch API
+    - REST API (GET, POST, PUT i DELETE)
+    - asynchroniczna kod (IIFE, async / await)
+    - obsługa błędów (try / catch)
+    - grafika wektorowa SVG (aktywne ikony, reagujące na aktualny stan na stronie)
+    - podział projektu na moduły (wydzielone widoki, komponenty)
 
-Przy grafice pomagała mi moja żona Marta Michalczyk
+
+Przy grafice i stylowaniu pomagała mi moja żona [Marta Michalczyk](https://pl.linkedin.com/in/marta-michalczyk-099043205/)
+
 
 <hr/>
 
@@ -39,8 +55,6 @@ Przy grafice pomagała mi moja żona Marta Michalczyk
   </a> 
   <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/>
   </a> 
-  <a href="https://sass-lang.com/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/2560px-Sass_Logo_Color.svg.png" alt="sass" width="40" height="40"/>
-  </a> 
   <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> 
   </a>
   <a href="https://github.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/github.svg" alt="github" width="50" height="40"/> 
@@ -57,9 +71,11 @@ Przy grafice pomagała mi moja żona Marta Michalczyk
 - [x] Połączenie wspólnych typów FE i BE
 - [x] Projekt podziału strony
 - [x] Projekt przykładowego nagłówka
-- [ ] Projekt przykładowej stopki
+- [x] Projekt docelowego nagłówka
+- [x] Projekt przykładowej stopki
+- [x] Projekt docelowej stopki
 - [x] Widoki i Routing
-- [ ] Dostosowanie stylowania do widoku na urządzenia mobilne
+- [x] Dostosowanie stylowania do widoku na urządzenia mobilne
 - [ ] Slidery na pierwszej stronie
     - [x] Wstawienie przykładowych sliderów
     - [ ] Obsługa docelowych sliderów (teksty i obrazy zaczytywane z bazy danych)
@@ -72,9 +88,12 @@ Przy grafice pomagała mi moja żona Marta Michalczyk
     - [ ] Obsługa dodawania obrazków do ofert
 - [ ] Paginacja 
 - [x] Obsługa logowania
-- [ ] Obsługa koszyka
-    - [ ] projet widoku koszyka
-    - [ ] edycja prduktów w koszyku (zmiana ilości produktów, usówanie produktu)
+    - [x] Projekt formularza logowania
+    - [x] Projekt formularza Zakłądania nowego konta
+    - [x] Projekt strony "jesteś zalogowany"
+- [x] Obsługa koszyka
+    - [x] Projet widoku koszyka
+    - [ ] Edycja prduktów w koszyku (zmiana ilości produktów, usówanie produktu)
 
  
 <hr/>

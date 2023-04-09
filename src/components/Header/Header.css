@@ -7,7 +7,6 @@
     top: 0;
     justify-content: center;
 
-    /* height: 200px; */
     width: auto;
     z-index: 101;
 
@@ -22,10 +21,10 @@
 .Header .search {
     width: 200px;
     flex-grow: 1;
-    border: 2px solid #ccc;
+    border: 2px solid var(--iconColor);
     border-radius: 16px;
-    padding: 0.1em 16px;
-
+    padding: 0.2em 16px;
+    font-size: 0.8em;
 }
 
 .Header .controls {
@@ -48,29 +47,21 @@
     padding: 3px;
 
     text-decoration: none;
-    /* background: #896; */
 }
 
 .Header .controls .description {
     min-width: 40px;
-    /* max-width: 200px; */
     margin: 4px;
-
-    /* width: 90px; */
 }
 
 .Header .controls .contact {
-    /* background: #896; */
     min-width: 0px;
 }
 
 .Header .controls .basket {
-    /* background: #806; */
     min-width: 0px;
 }
 
 .Header .controls .login {
-    /* background: #80F; */
     min-width: 0px;
-
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Input_number.css"
+import "./InputNumber.css"
 
 export const Input_number = () => {
     const [count, setCount] = useState<number>(1);

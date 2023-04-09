@@ -16,7 +16,7 @@ export const Header = () => {
             <LogoMain />
         </div>
         <div className='search'>
-            B
+                Wyszukaj
         </div>
         <div className='controls'>
             <NavLink to='/contact' className='control contact'>

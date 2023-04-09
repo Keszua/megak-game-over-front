@@ -30,7 +30,6 @@ export const Footer = () => {
             </p> 
             <p>
                 Przy grafice pomagała mi moja żona <a href="https://pl.linkedin.com/in/marta-michalczyk-099043205/">Marta Michalczyk</a>
-                
             </p> 
         </div>
 
@@ -39,9 +38,5 @@ export const Footer = () => {
                 <img src="https://github.com/Keszua/megak-game-over-front/raw/main/public/images/megak.png" alt="MegaK" width="100" height="60"/> 
             </a>
         </div>
-
-
-
-
     </div>
 }
