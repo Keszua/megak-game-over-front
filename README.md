@@ -1,8 +1,10 @@
 # Projekt na zaliczenie
+
 <p align="center">
   <a href="https://www.megak.pl/" target="_blank" rel="noreferrer"> <img src="https://github.com/Keszua/megak-game-over-front/raw/main/public/images/megak.png" alt="MegaK" height="80"/>
   </a>
 </p>
+
 # Front End
 
 Projekt na zaliczenie drugiej edycji [Mega Kursu JavaScriptu MegaK](https://www.megak.pl)
@@ -10,7 +12,6 @@ Projekt na zaliczenie drugiej edycji [Mega Kursu JavaScriptu MegaK](https://www.
 To jest **front end** napisany w ***React***
 
 Do prawidłowego działania, wymagany jest **back end** dostępny pod [tym adresem](https://github.com/Keszua/megak-game-over-back/)
-
 
 <hr/>
 
@@ -98,6 +99,79 @@ Przy grafice i stylowaniu pomagała mi moja żona [Marta Michalczyk](https://pl.
  
 <hr/>
 
+## Zrzutu ekranu
+
+### Widok strony głównej w pełnej szerokości
+<p align="center">
+  <img src="./printscreen/Scren01.png" alt="github" width="612" /> 
+</p>
+
+### Widok strony głównej w na wąskim ekranie
+<p align="center">
+  <img src="./printscreen/Scren02.png" alt="github" width="241" /> 
+</p>
+
+
+### Formularz logowania
+<p align="center">
+  <img src="./printscreen/Scren03.png" alt="github" width="612" /> 
+</p>
+
+### Formularz zakładania nowego konta
+<p align="center">
+  <img src="./printscreen/Scren04.png" alt="github" width="612" /> 
+</p>
+
+### Potwierdzenie logowania
+
+Po prawidłowym zalogowaniu się, zmienia sie ikona w prawym górnym rogu.
+
+<p align="center">
+  <img src="./printscreen/Scren05.png" alt="github" width="612" /> 
+</p>
+
+### Lista produktów
+<p align="center">
+  <img src="./printscreen/Scren06.png" alt="github" width="612" /> 
+</p>
+
+### Widok produktu lub usługi
+
+Zalogownay urzytkownik ma mozliwość dodania produktu lub usługi do koszyka.
+
+Administrator ma możliwość edytowania produktu.
+
+<p align="center">
+  <img src="./printscreen/Scren07.png" alt="github" width="612" /> 
+</p>
+
+### Widok edycji produktu lub usługi
+
+<p align="center">
+  <img src="./printscreen/Scren08.png" alt="github" width="612" /> 
+</p>
+
+### Widok koszyka
+
+Po dodaniu produktu lub usługi do koszyka, zmienia sie ikona koszyka.
+
+<p align="center">
+  <img src="./printscreen/Scren09.png" alt="github" width="612" /> 
+</p>
+
+### Widok strony: kontakt
+
+Miejscowość prawdziwa.
+
+Ulica wymyslona.
+
+<p align="center">
+  <img src="./printscreen/Scren10.png" alt="github" width="612" /> 
+</p>
+
+
+<hr/>
+
 ## Uruchomienie
 
 Repozytorium współdziała z częścią back-endową, którą można znaleźć pod [tym adresem](https://github.com/Keszua)
@@ -107,7 +181,7 @@ Repozytorium współdziała z częścią back-endową, którą można znaleźć 
 Sklonuj repozytorium na swój dysk
 
 ```bash
-git clone https://github.com/Keszua/project...
+git clone https://github.com/Keszua/megak-game-over-front.git
 ```
 
 Wejdz do folderu *project* i pobierz wymagane zależnosci
