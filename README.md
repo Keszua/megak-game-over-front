@@ -13,6 +13,8 @@ To jest **front end** napisany w ***React***
 
 Do prawidłowego działania, wymagany jest **back end** dostępny pod [tym adresem](https://github.com/Keszua/megak-game-over-back/)
 
+### Link do działającego demo: [keszua.networkmanager.pl](https://keszua.networkmanager.pl/)
+
 <hr/>
 
 ## Opis projektu

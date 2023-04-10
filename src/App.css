@@ -3,9 +3,10 @@
 }
 
 #root {
-    display: block;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
     background: #101010;
-    text-align: -moz-center;
 }
 
 .App {
